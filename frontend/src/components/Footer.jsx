@@ -91,7 +91,7 @@ export default function Footer() {
 
       {/* Barre Inférieure Copyright */}
       <div className="max-w-7xl mx-auto px-6 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
-        <p className='text-black'>© {new Date().getFullYear()} DIGIT-CONNECT AGENCY. {t('footer_rights', 'Tous droits réservés.')}</p>
+        <p className='text-slate-500'>© {new Date().getFullYear()} DIGIT-CONNECT AGENCY. {t('footer_rights', 'Tous droits réservés.')}</p>
         <p className="flex items-center gap-1">
           {t('footer_crafted', 'Conçu avec')} <Heart size={16} className="fill-current" /> {t('footer_by', 'par l\'équipe DIGIT-CONNECT')}
         </p>
