@@ -22,7 +22,7 @@ const resources = {
       hero_feat_2: "Architectures Scalables",
       hero_feat_3: "Support Technologique 24/7",
       services_badge: "Nos Expertises",
-      services_title: "Solutions digitales complètes pour votre entreprise",
+      services_title: "Quelques solutions digitales complètes pour votre entreprise",
       services_subtitle: "Un accompagnement de A à Z par des spécialistes passionnés.",
       portfolio_title: "Projets Récents",
       cat_all: "Tous",
@@ -94,7 +94,10 @@ const resources = {
       it_support: "Support Informatique",
       print_design: "Conception & Impression",
       digital_consulting: "Consulting Digital",
-      trust_title: "Ils nous font confiance"
+      trust_title: "Ils nous font confiance",
+      contact_success_title: "Message envoyé avec succès !",
+      contact_success_msg: "Merci pour votre message. Nous vous répondrons dans les plus brefs délais.",
+      contact_another_message: "Envoyer un autre message",
     }
   },
   en: {
@@ -117,7 +120,7 @@ const resources = {
       hero_feat_2: "Scalable Architectures",
       hero_feat_3: "24/7 Tech Support",
       services_badge: "Our Expertise",
-      services_title: "End-to-end digital solutions for your business",
+      services_title: "Some end-to-end digital solutions for your business",
       services_subtitle: "360-degree support by passionate digital specialists.",
       portfolio_title: "Recent Projects",
       cat_all: "All",
@@ -189,7 +192,10 @@ const resources = {
       it_support: "IT Support",
       print_design: "Design & Printing",
       digital_consulting: "Digital Consulting",
-      trust_title: "They trust us"
+      trust_title: "They trust us",
+      contact_success_msg: "Thank you for your message. We will get back to you as soon as possible.",
+      contact_success_title: "Message sent successfully!",
+      contact_another_message: "Send another message",
     }
   }
 };

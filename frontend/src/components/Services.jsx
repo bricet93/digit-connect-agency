@@ -43,7 +43,7 @@ export default function Services() {
             {t('services_badge', 'Nos Expertises')}
           </span>
           <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mt-4">
-            {t('services_title', 'Solutions digitales complètes pour votre entreprise')}
+            {t('services_title', 'Quelques solutions digitales complètes pour votre entreprise')}
           </h2>
         </div>
 
@@ -73,9 +73,9 @@ export default function Services() {
                   }}
                   whileHover={{ y: -5 }}
                   transition={{ duration: 0.3 }}
-                  className="p-8 rounded-2xl bg-slate-50 border border-slate-200/70 hover:bg-white hover:border-digitBlue/30 hover:shadow-xl transition-all group"
+                  className="p-8 rounded-sm bg-slate-50 border border-slate-200/70 hover:bg-white hover:border-digitBlue/30 hover:shadow-xl transition-all group"
                 >
-                  <div className="p-3 bg-white rounded-xl w-fit mb-6 border border-slate-200/80 shadow-xs group-hover:scale-110 transition-transform">
+                  <div className="p-3 bg-white rounded-sm w-fit mb-6 border border-slate-200/80 shadow-xs group-hover:scale-110 transition-transform">
                     {icon}
                   </div>
                   <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-digitBlue transition-colors">

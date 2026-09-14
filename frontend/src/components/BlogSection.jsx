@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { BookOpen, Calendar, Eye, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+import SEO from './SEO.jsx';
+
 export default function BlogSection() {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language || 'fr';
@@ -38,6 +40,12 @@ export default function BlogSection() {
 
   return (
     <section id="blog" className="py-20 px-4 bg-slate-50 text-left border-y border-slate-200/60">
+      <SEO 
+        title="Accueil"
+        description="DIGIT-CONNECT est votre partenaire technologique à Douala. Agence spécialisée en développement sur-mesure, branding et transformation digitale."
+        keywords="agence web douala, devis gratuit site web, entreprise IT cameroun"
+      />
+      
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center gap-2 mb-2 text-digitPink font-bold text-xs uppercase tracking-wider bg-digitPink/10 px-3.5 py-1.5 rounded-full w-fit border border-digitPink/20">
           <BookOpen size={16} /> 
@@ -53,24 +61,24 @@ export default function BlogSection() {
             {[1, 2, 3].map((n) => (
               <div 
                 key={n} 
-                className="bg-white rounded-2xl border border-slate-200 shadow-xs p-6 animate-pulse flex flex-col justify-between h-96"
+                className="bg-white rounded-sm border border-slate-200 shadow-xs p-6 animate-pulse flex flex-col justify-between h-96"
               >
                 <div>
-                  <div className="w-full h-48 bg-slate-200 rounded-xl mb-4" />
+                  <div className="w-full h-48 bg-slate-200 rounded-sm mb-4" />
                   <div className="flex justify-between items-center mb-3">
                     <div className="w-20 h-5 bg-slate-200 rounded-full" />
-                    <div className="w-24 h-4 bg-slate-200 rounded-md" />
+                    <div className="w-24 h-4 bg-slate-200 rounded-sm" />
                   </div>
-                  <div className="w-3/4 h-6 bg-slate-200 rounded-md mb-2" />
-                  <div className="w-full h-4 bg-slate-100 rounded-md mb-1" />
-                  <div className="w-2/3 h-4 bg-slate-100 rounded-md" />
+                  <div className="w-3/4 h-6 bg-slate-200 rounded-sm mb-2" />
+                  <div className="w-full h-4 bg-slate-100 rounded-sm mb-1" />
+                  <div className="w-2/3 h-4 bg-slate-100 rounded-sm" />
                 </div>
-                <div className="w-28 h-5 bg-slate-200 rounded-md mt-4" />
+                <div className="w-28 h-5 bg-slate-200 rounded-sm mt-4" />
               </div>
             ))}
           </div>
         ) : articles.length === 0 ? (
-          <div className="p-8 text-center bg-slate-50 border border-slate-200/80 rounded-2xl">
+          <div className="p-8 text-center bg-slate-50 border border-slate-200/80 rounded-sm">
             <p className="text-xs font-semibold text-slate-500 italic">
               {t('blog_empty', 'Aucun article publié pour le moment.')}
             </p>
@@ -84,7 +92,7 @@ export default function BlogSection() {
               return (
                 <article 
                   key={article.id} 
-                  className="bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-digitBlue/30 transition-all duration-500 flex flex-col justify-between group"
+                  className="bg-white rounded-sm overflow-hidden border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-digitBlue/30 transition-all duration-500 flex flex-col justify-between group"
                 >
                   <div>
                     {article.cover_image && (

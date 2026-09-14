@@ -150,14 +150,14 @@ export default function AdminArticles() {
         <h2 className="text-xl font-bold text-slate-900">Gestion des Articles du Blog</h2>
         <button
           onClick={() => handleOpenModal()}
-          className="bg-digitBlue text-white px-4 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-digitBlue/90 transition-all cursor-pointer"
+          className="bg-digitBlue text-white px-4 py-2.5 rounded-sm font-bold text-sm flex items-center gap-2 hover:bg-digitBlue/90 transition-all cursor-pointer"
         >
           <Plus size={16} /> Nouvel Article
         </button>
       </div>
 
       {/* Liste des articles */}
-      <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
+      <div className="bg-white rounded-sm border border-slate-200 overflow-hidden shadow-xs">
         <table className="w-full text-left text-sm">
           <thead className="bg-slate-50 text-slate-500 uppercase text-xs">
             <tr>
@@ -215,18 +215,18 @@ export default function AdminArticles() {
       {/* Modal Révisé avec Commutation de Langue */}
       {isEditing && (
         <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl max-w-3xl w-full p-6 max-h-[90vh] overflow-y-auto space-y-4 text-left">
+          <div className="bg-white rounded-sm max-w-3xl w-full p-6 max-h-[90vh] overflow-y-auto space-y-4 text-left">
             <div className="flex justify-between items-center border-b border-slate-100 pb-3">
               <h3 className="text-lg font-bold text-slate-900">
                 {selectedArticle ? 'Éditer l’article' : 'Créer un nouvel article'}
               </h3>
               
               {/* Selecteur de langue */}
-              <div className="flex bg-slate-100 p-1 rounded-xl">
+              <div className="flex bg-slate-100 p-1 rounded-sm">
                 <button
                   type="button"
                   onClick={() => setLangTab('fr')}
-                  className={`px-3 py-1 text-xs font-bold rounded-lg transition-all flex items-center gap-1 cursor-pointer ${
+                  className={`px-3 py-1 text-xs font-bold rounded-sm transition-all flex items-center gap-1 cursor-pointer ${
                     langTab === 'fr' ? 'bg-white text-digitBlue shadow-xs' : 'text-slate-500'
                   }`}
                 >
@@ -235,7 +235,7 @@ export default function AdminArticles() {
                 <button
                   type="button"
                   onClick={() => setLangTab('en')}
-                  className={`px-3 py-1 text-xs font-bold rounded-lg transition-all flex items-center gap-1 cursor-pointer ${
+                  className={`px-3 py-1 text-xs font-bold rounded-sm transition-all flex items-center gap-1 cursor-pointer ${
                     langTab === 'en' ? 'bg-white text-digitBlue shadow-xs' : 'text-slate-500'
                   }`}
                 >
@@ -255,7 +255,7 @@ export default function AdminArticles() {
                     placeholder="mon-article-2026"
                     value={formData.slug}
                     onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-                    className="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm"
+                    className="w-full p-3 bg-slate-50 border border-slate-300 rounded-sm text-sm"
                   />
                 </div>
                 <div>
@@ -263,7 +263,7 @@ export default function AdminArticles() {
                   <select
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm"
+                    className="w-full p-3 bg-slate-50 border border-slate-300 rounded-sm text-sm"
                   >
                     {CATEGORIES.map((cat) => (
                       <option key={cat.value} value={cat.value}>{cat.label}</option>
@@ -279,13 +279,13 @@ export default function AdminArticles() {
                   placeholder="https://..."
                   value={formData.cover_image}
                   onChange={(e) => setFormData({ ...formData, cover_image: e.target.value })}
-                  className="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm"
+                  className="w-full p-3 bg-slate-50 border border-slate-300 rounded-sm text-sm"
                 />
               </div>
 
               {/* Contenu selon la langue sélectionnée */}
               {langTab === 'fr' ? (
-                <div className="space-y-4 bg-slate-50/50 p-4 rounded-xl border border-slate-100">
+                <div className="space-y-4 bg-slate-50/50 p-4 rounded-sm border border-slate-100">
                   <h4 className="text-xs font-extrabold uppercase text-digitBlue tracking-wider">Contenu en Français</h4>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Titre (FR) *</label>
@@ -294,7 +294,7 @@ export default function AdminArticles() {
                       required
                       value={formData.title_fr}
                       onChange={(e) => setFormData({ ...formData, title_fr: e.target.value })}
-                      className="w-full p-3 bg-white border border-slate-300 rounded-xl text-sm"
+                      className="w-full p-3 bg-white border border-slate-300 rounded-sm text-sm"
                     />
                   </div>
                   <div>
@@ -303,7 +303,7 @@ export default function AdminArticles() {
                       rows="2"
                       value={formData.excerpt_fr}
                       onChange={(e) => setFormData({ ...formData, excerpt_fr: e.target.value })}
-                      className="w-full p-3 bg-white border border-slate-300 rounded-xl text-sm"
+                      className="w-full p-3 bg-white border border-slate-300 rounded-sm text-sm"
                     />
                   </div>
                   <div>
@@ -313,12 +313,12 @@ export default function AdminArticles() {
                       required
                       value={formData.content_fr}
                       onChange={(e) => setFormData({ ...formData, content_fr: e.target.value })}
-                      className="w-full p-3 bg-white border border-slate-300 rounded-xl text-sm font-mono"
+                      className="w-full p-3 bg-white border border-slate-300 rounded-sm text-sm font-mono"
                     />
                   </div>
                 </div>
               ) : (
-                <div className="space-y-4 bg-slate-50/50 p-4 rounded-xl border border-slate-100">
+                <div className="space-y-4 bg-slate-50/50 p-4 rounded-sm border border-slate-100">
                   <h4 className="text-xs font-extrabold uppercase text-digitBlue tracking-wider">Contenu en Anglais</h4>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Titre (EN) *</label>
@@ -327,7 +327,7 @@ export default function AdminArticles() {
                       required
                       value={formData.title_en}
                       onChange={(e) => setFormData({ ...formData, title_en: e.target.value })}
-                      className="w-full p-3 bg-white border border-slate-300 rounded-xl text-sm"
+                      className="w-full p-3 bg-white border border-slate-300 rounded-sm text-sm"
                     />
                   </div>
                   <div>
@@ -336,7 +336,7 @@ export default function AdminArticles() {
                       rows="2"
                       value={formData.excerpt_en}
                       onChange={(e) => setFormData({ ...formData, excerpt_en: e.target.value })}
-                      className="w-full p-3 bg-white border border-slate-300 rounded-xl text-sm"
+                      className="w-full p-3 bg-white border border-slate-300 rounded-sm text-sm"
                     />
                   </div>
                   <div>
@@ -346,7 +346,7 @@ export default function AdminArticles() {
                       required
                       value={formData.content_en}
                       onChange={(e) => setFormData({ ...formData, content_en: e.target.value })}
-                      className="w-full p-3 bg-white border border-slate-300 rounded-xl text-sm font-mono"
+                      className="w-full p-3 bg-white border border-slate-300 rounded-sm text-sm font-mono"
                     />
                   </div>
                 </div>
@@ -369,13 +369,13 @@ export default function AdminArticles() {
                 <button
                   type="button"
                   onClick={() => setIsEditing(false)}
-                  className="px-5 py-2.5 bg-slate-100 text-slate-600 font-bold text-sm rounded-xl cursor-pointer hover:bg-slate-200"
+                  className="px-5 py-2.5 bg-slate-100 text-slate-600 font-bold text-sm rounded-sm cursor-pointer hover:bg-slate-200"
                 >
                   Annuler
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2.5 bg-digitBlue text-white font-bold text-sm rounded-xl hover:bg-digitBlue/90 cursor-pointer"
+                  className="px-5 py-2.5 bg-digitBlue text-white font-bold text-sm rounded-sm hover:bg-digitBlue/90 cursor-pointer"
                 >
                   Enregistrer
                 </button>

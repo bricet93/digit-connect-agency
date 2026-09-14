@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { ExternalLink } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const TRUST_LOGOS = [
   { name: 'Partenaire 1', logo: 'https://www.logotouse.com/images/logos/nairobi-colored.svg' },
@@ -21,7 +21,7 @@ export default function PortfolioSection() {
   useEffect(() => {
     axios.get('http://localhost:5000/api/portfolio')
       .then(res => {
-        if (res.data.success) {
+        if (res.data && res.data.success) {
           const sortedProjects = [...res.data.data]
             .sort((a, b) => b.id - a.id)
             .slice(0, 6);
@@ -30,10 +30,6 @@ export default function PortfolioSection() {
       })
       .catch(console.error);
   }, []);
-
-  const filteredProjects = filter === 'all' 
-    ? projects 
-    : projects.filter(p => p.category === filter);
 
   return (
     <section id="portfolio" className="py-20 border-t border-slate-200/60">
@@ -72,7 +68,7 @@ export default function PortfolioSection() {
             <button
               key={cat.id}
               onClick={() => setFilter(cat.id)}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+              className={`px-4 py-2 rounded-sm text-xs font-bold transition-all cursor-pointer ${
                 filter === cat.id
                   ? 'bg-digitBlue text-white shadow-md'
                   : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
@@ -83,57 +79,58 @@ export default function PortfolioSection() {
           ))}
         </div>
 
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AnimatePresence>
-            {filteredProjects.map((p) => {
-              const title = currentLang === 'en' && p.title_en ? p.title_en : p.title_fr;
-              const description = currentLang === 'en' && p.description_en ? p.description_en : p.description_fr;
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((p) => {
+            const title = currentLang === 'en' && p.title_en ? p.title_en : p.title_fr;
+            const description = currentLang === 'en' && p.description_en ? p.description_en : p.description_fr;
 
-              return (
-                <motion.div 
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
-                  key={p.id} 
-                  className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-xl transition-shadow group flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="relative overflow-hidden h-50 md:h-56 lg:h-48 xl:h-52 2xl:h-56">
-                      <img
-                        src={p.image_url}
-                        alt={title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <span className="absolute top-3 left-3 text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 bg-slate-900/80 text-white backdrop-blur-xs rounded-md">
-                        {p.category ? p.category.replace('_', ' ') : 'Projet'}
-                      </span>
-                    </div>
-                    <div className="p-5 text-left">
-                      <h3 className="font-bold text-slate-900 text-lg mb-1">{title}</h3>
-                      <p className="text-xs text-slate-500 mb-3">{p.client_name || 'Projet Client'}</p>
-                      <p className="text-xs text-slate-600 line-clamp-2">{description}</p>
-                    </div>
+            // Déterminer si la carte correspond au filtre sélectionné
+            const isMatch = filter === 'all' || p.category === filter;
+
+            return (
+              <motion.div 
+                layout
+                key={p.id} 
+                className={`bg-white rounded-sm border border-slate-200 overflow-hidden shadow-xs transition-all duration-500 group flex flex-col justify-between ${
+                  isMatch 
+                    ? 'opacity-100 scale-100 grayscale-0 hover:shadow-xl hover:-translate-y-1' 
+                    : 'opacity-50 scale-95 grayscale hover:grayscale-0 hover:opacity-80'
+                }`}
+              >
+                <div>
+                  <div className="relative overflow-hidden h-50 md:h-56 lg:h-48 xl:h-52 2xl:h-56">
+                    <img
+                      src={p.image_url}
+                      alt={title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <span className="absolute top-3 left-3 text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 bg-slate-900/80 text-white backdrop-blur-xs rounded-sm">
+                      {p.category ? p.category.replace('_', ' ') : 'Projet'}
+                    </span>
                   </div>
+                  <div className="p-5 text-left">
+                    <h3 className="font-bold text-slate-900 text-lg mb-1">{title}</h3>
+                    <p className="text-xs text-slate-500 mb-3">{p.client_name || 'Projet Client'}</p>
+                    <p className="text-xs text-slate-600 line-clamp-2">{description}</p>
+                  </div>
+                </div>
 
-                  {p.project_url && (
-                    <div className="p-5 pt-0 text-left">
-                      <a
-                        href={p.project_url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-digitBlue hover:text-digitPink transition-colors"
-                      >
-                        {t('see_project', 'Voir le projet')} <ExternalLink size={14} />
-                      </a>
-                    </div>
-                  )}
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </motion.div>
+                {p.project_url && (
+                  <div className="p-5 pt-0 text-left">
+                    <a
+                      href={p.project_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-digitBlue hover:text-digitPink transition-colors"
+                    >
+                      {t('see_project', 'Voir le projet')} <ExternalLink size={14} />
+                    </a>
+                  </div>
+                )}
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

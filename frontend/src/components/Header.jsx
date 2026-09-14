@@ -26,13 +26,13 @@ export default function Header() {
     }
   };
 
+  // Liens standards (sans Contact)
   const navLinks = [
     { href: '#home', label: t('nav_home', 'Accueil') },
     { href: '#services', label: t('nav_services', 'Services') },
     { href: '#portfolio', label: t('nav_portfolio', 'Portfolio') },
     { href: '#team', label: t('nav_team', 'Notre Équipe') },
-    { href: '#blog', label: t('nav_blog', 'Actualités') },
-    { href: '#contact', label: t('nav_contact', 'Contact') }
+    { href: '#blog', label: t('nav_blog', 'Actualités') }
   ];
 
   return (
@@ -50,14 +50,6 @@ export default function Header() {
             alt="DIGIT-CONNECT LOGO" 
             className="h-10 w-auto object-contain transition-transform duration-500 group-hover:scale-105" 
           />
-          {/* <div className="hidden sm:flex flex-col">
-            <span className="text-lg font-black tracking-tight text-slate-900 group-hover:text-digitBlue transition-colors">
-              DIGIT-CONNECT <span className="text-digitPink">AGENCY</span>
-            </span>
-            <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">
-              {t('slogan', "De l'idée à l'impact")}
-            </span>
-          </div> */}
         </a>
 
         {/* Navigation Desktop */}
@@ -72,6 +64,15 @@ export default function Header() {
               {link.label}
             </a>
           ))}
+
+          {/* Bouton Contact mis en évidence */}
+          <a
+            href="#contact"
+            onClick={(e) => handleNavClick(e, '#contact')}
+            className="bg-digitPink hover:bg-digitPink/90 text-white px-4 py-2 rounded-sm shadow-xs hover:shadow-md transition-all duration-300 cursor-pointer font-bold tracking-normal text-xs uppercase"
+          >
+            {t('nav_contact', 'Contact')}
+          </a>
         </nav>
 
         {/* Boutons d'action */}
@@ -80,7 +81,7 @@ export default function Header() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleLanguage}
-            className="flex items-center gap-1.5 text-xs bg-slate-100 hover:bg-slate-200/70 px-3.5 py-2 rounded-xl border border-slate-200 text-slate-700 font-bold transition-all cursor-pointer"
+            className="flex items-center gap-1.5 text-xs bg-slate-100 hover:bg-slate-200/70 px-3.5 py-2 rounded-sm border border-slate-200 text-slate-700 font-bold transition-all cursor-pointer"
           >
             <Globe size={14} className="text-digitBlue" />
             <span>{i18n.language.toUpperCase()}</span>
@@ -91,7 +92,7 @@ export default function Header() {
             whileTap={{ scale: 0.97 }}
             href="#quote-section" 
             onClick={(e) => handleNavClick(e, '#quote-section')}
-            className="flex items-center gap-2 bg-digitBlue hover:bg-digitPink text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-colors duration-500 shadow-sm hover:shadow-md cursor-pointer"
+            className="flex items-center gap-2 bg-digitBlue hover:bg-digitPink text-white px-5 py-2.5 rounded-sm text-xs font-bold transition-colors duration-500 shadow-sm hover:shadow-md cursor-pointer"
           >
             <span>{t('nav_quote', 'Demander un Devis')}</span>
             <ArrowRight size={14} />
@@ -102,7 +103,7 @@ export default function Header() {
         <div className="flex lg:hidden items-center gap-2">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-slate-700 hover:bg-slate-100 rounded-xl transition-colors cursor-pointer"
+            className="p-2 text-slate-700 hover:bg-slate-100 rounded-sm transition-colors cursor-pointer"
           >
             {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -128,10 +129,17 @@ export default function Header() {
                 {link.label}
               </a>
             ))}
+            <a
+              href="#contact"
+              onClick={(e) => handleNavClick(e, '#contact')}
+              className="block text-center bg-digitPink text-white py-2.5 rounded-sm text-sm font-bold shadow-xs cursor-pointer"
+            >
+              {t('nav_contact', 'Contact')}
+            </a>
             <a 
               href="#quote-section" 
               onClick={(e) => handleNavClick(e, '#quote-section')}
-              className="flex items-center justify-center gap-2 bg-digitBlue text-white w-full py-3 rounded-xl text-xs font-bold shadow-md cursor-pointer"
+              className="flex items-center justify-center gap-2 bg-digitBlue text-white w-full py-3 rounded-sm text-xs font-bold shadow-md cursor-pointer"
             >
               <span>{t('nav_quote', 'Demander un Devis')}</span>
               <ArrowRight size={14} />

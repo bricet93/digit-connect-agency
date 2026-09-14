@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Plus, Edit3, Trash2, X, ExternalLink, Globe } from 'lucide-react';
+import { Plus, Edit3, Trash2, X, ExternalLink, Globe, Upload } from 'lucide-react';
 import ConfirmModal from '../ConfirmModal';
 
 export default function PortfolioManager() {
@@ -8,6 +8,8 @@ export default function PortfolioManager() {
   const [isOpen, setIsOpen] = useState(false);
   const [editItem, setEditItem] = useState(null);
   const [activeTab, setActiveTab] = useState('fr');
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState('');
 
   const [confirmModal, setConfirmModal] = useState({
     isOpen: false,
@@ -66,28 +68,71 @@ export default function PortfolioManager() {
   const handleOpen = (item = null) => {
     setEditItem(item);
     setActiveTab('fr');
-    setForm(item ? {
-      title_fr: item.title_fr || '',
-      title_en: item.title_en || '',
-      category: item.category || 'web_ecommerce',
-      client_name: item.client_name || '',
-      image_url: item.image_url || '',
-      project_url: item.project_url || '',
-      description_fr: item.description_fr || '',
-      description_en: item.description_en || ''
-    } : initialFormState);
+    setSelectedFile(null);
+
+    if (item) {
+      setForm({
+        title_fr: item.title_fr || '',
+        title_en: item.title_en || '',
+        category: item.category || 'web_ecommerce',
+        client_name: item.client_name || '',
+        image_url: item.image_url || '',
+        project_url: item.project_url || '',
+        description_fr: item.description_fr || '',
+        description_en: item.description_en || ''
+      });
+      setImagePreview(item.image_url || '');
+    } else {
+      setForm(initialFormState);
+      setImagePreview('');
+    }
     
     setIsOpen(true);
   };
 
-  const handleSubmit = (e) => {
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+      setImagePreview(URL.createObjectURL(file));
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    let finalImageUrl = form.image_url;
+
+    // Si un fichier local a été sélectionné, on procède d'abord à l'upload
+    if (selectedFile) {
+      const uploadData = new FormData();
+      uploadData.append('file', selectedFile);
+
+      try {
+        const uploadRes = await axios.post('http://localhost:5000/api/upload', uploadData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`
+          }
+        });
+        if (uploadRes.data && uploadRes.data.url) {
+          finalImageUrl = uploadRes.data.url;
+        }
+      } catch (uploadErr) {
+        console.error("Erreur d'upload de l'image :", uploadErr);
+        alert("Échec de l'envoi de l'image.");
+        return;
+      }
+    }
+
+    const payload = { ...form, image_url: finalImageUrl };
+
     const url = editItem 
       ? `http://localhost:5000/api/portfolio/admin/${editItem.id}` 
       : 'http://localhost:5000/api/portfolio/admin';
     const method = editItem ? 'put' : 'post';
 
-    axios[method](url, form, { headers })
+    axios[method](url, payload, { headers })
       .then(res => {
         if (res.data.success) {
           fetchPortfolio();
@@ -117,7 +162,7 @@ export default function PortfolioManager() {
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 p-6 text-left shadow-xs">
+    <div className="bg-white rounded-sm border border-slate-200 p-6 text-left shadow-xs">
       <div className="flex justify-between items-center mb-6 border-b border-slate-100 pb-4">
         <div>
           <h2 className="text-xl font-extrabold text-slate-900">Portfolio & Réalisations</h2>
@@ -125,7 +170,7 @@ export default function PortfolioManager() {
         </div>
         <button 
           onClick={() => handleOpen()} 
-          className="flex items-center gap-2 bg-digitBlue hover:bg-digitBlue/90 text-white font-bold text-xs px-4 py-2.5 rounded-xl cursor-pointer transition-all shadow-xs"
+          className="flex items-center gap-2 bg-digitBlue hover:bg-digitBlue/90 text-white font-bold text-xs px-4 py-2.5 rounded-sm cursor-pointer transition-all shadow-xs"
         >
           <Plus size={16}/> Ajouter Un Projet
         </button>
@@ -133,10 +178,10 @@ export default function PortfolioManager() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {items.map(item => (
-          <div key={item.id} className="border border-slate-200 rounded-2xl p-4 bg-slate-50/50 flex flex-col justify-between hover:border-slate-300 transition-all">
+          <div key={item.id} className="border border-slate-200 rounded-sm p-4 bg-slate-50/50 flex flex-col justify-between hover:border-slate-300 transition-all">
             <div>
               <div className="relative mb-3">
-                <img src={item.image_url} alt={item.title_fr} className="h-40 w-full object-cover rounded-xl border border-slate-200" />
+                <img src={item.image_url} alt={item.title_fr} className="h-40 w-full object-cover rounded-sm border border-slate-200" />
                 <span className="absolute top-2 left-2 bg-slate-900/80 text-white backdrop-blur-md text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">
                   {item.category?.replace('_', ' ')}
                 </span>
@@ -163,14 +208,14 @@ export default function PortfolioManager() {
               <div className="flex gap-2">
                 <button 
                   onClick={() => handleOpen(item)} 
-                  className="p-2 text-slate-600 bg-white hover:text-digitBlue rounded-xl border border-slate-200 shadow-2xs transition-all cursor-pointer"
+                  className="p-2 text-slate-600 bg-white hover:text-digitBlue rounded-sm border border-slate-200 shadow-2xs transition-all cursor-pointer"
                   title="Éditer"
                 >
                   <Edit3 size={14}/>
                 </button>
                 <button 
                   onClick={() => handleDeleteClick(item)} 
-                  className="p-2 text-rose-600 bg-rose-50 hover:bg-rose-100 rounded-xl transition-all cursor-pointer"
+                  className="p-2 text-rose-600 bg-rose-50 hover:bg-rose-100 rounded-sm transition-all cursor-pointer"
                   title="Supprimer"
                 >
                   <Trash2 size={14}/>
@@ -183,12 +228,12 @@ export default function PortfolioManager() {
 
       {isOpen && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 shadow-2xl">
+          <div className="bg-white rounded-sm max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 shadow-2xl">
             <div className="flex justify-between items-center p-5 border-b border-slate-100 sticky top-0 bg-white z-10">
               <h3 className="font-extrabold text-slate-900 text-lg">
                 {editItem ? 'Éditer le Projet' : 'Nouveau Projet'}
               </h3>
-              <button onClick={() => setIsOpen(false)} className="text-slate-400 hover:text-slate-600 p-1 rounded-lg">
+              <button onClick={() => setIsOpen(false)} className="text-slate-400 hover:text-slate-600 p-1 rounded-sm cursor-pointer">
                 <X size={20} />
               </button>
             </div>
@@ -228,7 +273,7 @@ export default function PortfolioManager() {
                       placeholder="ex: Refonte Identité & Plateforme Web" 
                       value={form.title_fr} 
                       onChange={e => setForm({...form, title_fr: e.target.value})} 
-                      className="w-full border border-slate-300 p-3 rounded-xl text-xs outline-none focus:border-digitBlue" 
+                      className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" 
                       required 
                     />
                   </div>
@@ -238,7 +283,7 @@ export default function PortfolioManager() {
                       placeholder="Présentation synthétique du projet réalisé..." 
                       value={form.description_fr} 
                       onChange={e => setForm({...form, description_fr: e.target.value})} 
-                      className="w-full border border-slate-300 p-3 rounded-xl text-xs outline-none focus:border-digitBlue" 
+                      className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" 
                       rows={4} 
                     />
                   </div>
@@ -254,7 +299,7 @@ export default function PortfolioManager() {
                       placeholder="ex: Brand Redesign & Web Platform" 
                       value={form.title_en} 
                       onChange={e => setForm({...form, title_en: e.target.value})} 
-                      className="w-full border border-slate-300 p-3 rounded-xl text-xs outline-none focus:border-digitBlue" 
+                      className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" 
                       required 
                     />
                   </div>
@@ -264,7 +309,7 @@ export default function PortfolioManager() {
                       placeholder="Summary of the completed project..." 
                       value={form.description_en} 
                       onChange={e => setForm({...form, description_en: e.target.value})} 
-                      className="w-full border border-slate-300 p-3 rounded-xl text-xs outline-none focus:border-digitBlue" 
+                      className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" 
                       rows={4} 
                     />
                   </div>
@@ -279,7 +324,7 @@ export default function PortfolioManager() {
                   <select 
                     value={form.category} 
                     onChange={e => setForm({...form, category: e.target.value})} 
-                    className="w-full border border-slate-300 p-3 rounded-xl text-xs outline-none focus:border-digitBlue bg-white"
+                    className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue bg-white"
                     required
                   >
                     {categories.map(cat => (
@@ -295,30 +340,48 @@ export default function PortfolioManager() {
                     placeholder="ex: Baastel, Kaffo Foods..." 
                     value={form.client_name} 
                     onChange={e => setForm({...form, client_name: e.target.value})} 
-                    className="w-full border border-slate-300 p-3 rounded-xl text-xs outline-none focus:border-digitBlue" 
+                    className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" 
                   />
                 </div>
 
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">URL de l'Image de Couverture *</label>
+                {/* Upload / URL Image */}
+                <div className="md:col-span-2 space-y-2">
+                  <label className="block text-xs font-semibold text-slate-700">Image de Couverture</label>
+                  
+                  <div className="flex flex-col md:flex-row gap-3 items-start md:items-center">
+                    <label className="flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-2 rounded-sm text-xs font-semibold cursor-pointer border border-slate-300 transition-colors">
+                      <Upload size={14} /> Importer un fichier
+                      <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
+                    </label>
+                    <span className="text-xs text-slate-400 font-semibold">ou renseignez l'URL ci-dessous :</span>
+                  </div>
+
                   <input 
                     type="url" 
-                    placeholder="https://images.unsplash.com/..." 
+                    placeholder="https://..." 
                     value={form.image_url} 
-                    onChange={e => setForm({...form, image_url: e.target.value})} 
-                    className="w-full border border-slate-300 p-3 rounded-xl text-xs outline-none focus:border-digitBlue" 
-                    required 
+                    onChange={e => {
+                      setForm({...form, image_url: e.target.value});
+                      setImagePreview(e.target.value);
+                    }} 
+                    className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" 
                   />
+
+                  {imagePreview && (
+                    <div className="mt-2 relative w-32 h-20 rounded-sm overflow-hidden border border-slate-200">
+                      <img src={imagePreview} alt="Aperçu" className="w-full h-full object-cover" />
+                    </div>
+                  )}
                 </div>
 
-                <div>
+                <div className="md:col-span-2">
                   <label className="block text-xs font-semibold text-slate-700 mb-1">Lien Externe du Projet (Optionnel)</label>
                   <input 
                     type="url" 
                     placeholder="https://..." 
                     value={form.project_url} 
                     onChange={e => setForm({...form, project_url: e.target.value})} 
-                    className="w-full border border-slate-300 p-3 rounded-xl text-xs outline-none focus:border-digitBlue" 
+                    className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" 
                   />
                 </div>
               </div>
@@ -327,13 +390,13 @@ export default function PortfolioManager() {
                 <button 
                   type="button" 
                   onClick={() => setIsOpen(false)} 
-                  className="px-4 py-2.5 border border-slate-300 rounded-xl text-xs font-semibold text-slate-700 hover:bg-slate-50 cursor-pointer"
+                  className="px-4 py-2.5 border border-slate-300 rounded-sm text-xs font-semibold text-slate-700 hover:bg-slate-50 cursor-pointer"
                 >
                   Annuler
                 </button>
                 <button 
                   type="submit" 
-                  className="px-5 py-2.5 bg-digitBlue hover:bg-digitBlue/90 text-white rounded-xl text-xs font-bold cursor-pointer transition-all shadow-xs"
+                  className="px-5 py-2.5 bg-digitBlue hover:bg-digitBlue/90 text-white rounded-sm text-xs font-bold cursor-pointer transition-all shadow-xs"
                 >
                   Enregistrer le Projet
                 </button>

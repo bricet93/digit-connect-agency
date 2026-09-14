@@ -124,7 +124,7 @@ export default function ServicesManager() {
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-xs text-left">
+    <div className="bg-white rounded-sm border border-slate-200 p-8 shadow-xs text-left">
       <div className="flex justify-between items-center mb-6">
         <div>
           <h2 className="text-xl font-extrabold text-slate-900">Gestion des Services</h2>
@@ -132,13 +132,13 @@ export default function ServicesManager() {
         </div>
         <button
           onClick={() => handleOpenModal()}
-          className="flex items-center gap-2 bg-digitBlue hover:bg-digitBlue/90 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md cursor-pointer"
+          className="flex items-center gap-2 bg-digitBlue hover:bg-digitBlue/90 text-white font-bold text-xs px-4 py-2.5 rounded-sm shadow-md cursor-pointer"
         >
           <Plus size={16} /> Ajouter un Service
         </button>
       </div>
 
-      <div className="overflow-x-auto border border-slate-200 rounded-xl">
+      <div className="overflow-x-auto border border-slate-200 rounded-sm">
         <table className="w-full text-left text-xs">
           <thead className="bg-slate-50 text-slate-600 font-bold border-b border-slate-200 uppercase">
             <tr>
@@ -175,10 +175,10 @@ export default function ServicesManager() {
                     )}
                   </td>
                   <td className="p-4 text-right">
-                    <button onClick={() => handleOpenModal(item)} className="p-2 text-slate-600 hover:text-digitBlue bg-slate-100 rounded-lg mr-2 cursor-pointer">
+                    <button onClick={() => handleOpenModal(item)} className="p-2 text-slate-600 hover:text-digitBlue bg-slate-100 rounded-sm mr-2 cursor-pointer">
                       <Edit2 size={14} />
                     </button>
-                    <button onClick={() => handleDeleteClick(item)} className="p-2 text-rose-600 hover:text-rose-800 bg-rose-50 rounded-lg cursor-pointer">
+                    <button onClick={() => handleDeleteClick(item)} className="p-2 text-rose-600 hover:text-rose-800 bg-rose-50 rounded-sm cursor-pointer">
                       <Trash2 size={14} />
                     </button>
                   </td>
@@ -192,12 +192,12 @@ export default function ServicesManager() {
       <AnimatePresence>
         {showModal && (
           <div className="fixed inset-0 bg-slate-900/50 flex items-center justify-center z-50 p-4">
-            <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 max-h-[90vh] overflow-y-auto">
+            <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="bg-white rounded-sm max-w-lg w-full p-6 shadow-2xl border border-slate-100 max-h-[90vh] overflow-y-auto">
               <h3 className="text-lg font-bold text-slate-900 mb-4">{editingService ? 'Modifier le Service' : 'Nouveau Service'}</h3>
               <form onSubmit={handleSave} className="space-y-3 text-xs">
                 <div>
                   <label className="block font-semibold text-slate-600 mb-2">Catégories Associées (JSON)</label>
-                  <div className="grid grid-cols-2 gap-2 bg-slate-50 p-3 rounded-xl border">
+                  <div className="grid grid-cols-2 gap-2 bg-slate-50 p-3 rounded-sm border">
                     {CATEGORIES.map(cat => (
                       <label key={cat.value} className="flex items-center gap-2 text-[11px] cursor-pointer">
                         <input
@@ -212,27 +212,27 @@ export default function ServicesManager() {
                 </div>
                 <div>
                   <label className="block font-semibold text-slate-600 mb-1">Titre (FR)</label>
-                  <input type="text" required value={formData.title_fr} onChange={(e) => setFormData({ ...formData, title_fr: e.target.value })} className="w-full p-2.5 bg-slate-50 border rounded-xl" />
+                  <input type="text" required value={formData.title_fr} onChange={(e) => setFormData({ ...formData, title_fr: e.target.value })} className="w-full p-2.5 bg-slate-50 border rounded-sm" />
                 </div>
                 <div>
                   <label className="block font-semibold text-slate-600 mb-1">Titre (EN)</label>
-                  <input type="text" value={formData.title_en} onChange={(e) => setFormData({ ...formData, title_en: e.target.value })} className="w-full p-2.5 bg-slate-50 border rounded-xl" />
+                  <input type="text" value={formData.title_en} onChange={(e) => setFormData({ ...formData, title_en: e.target.value })} className="w-full p-2.5 bg-slate-50 border rounded-sm" />
                 </div>
                 <div>
                   <label className="block font-semibold text-slate-600 mb-1">Description (FR)</label>
-                  <textarea value={formData.description_fr} onChange={(e) => setFormData({ ...formData, description_fr: e.target.value })} className="w-full p-2.5 bg-slate-50 border rounded-xl" rows={2} />
+                  <textarea value={formData.description_fr} onChange={(e) => setFormData({ ...formData, description_fr: e.target.value })} className="w-full p-2.5 bg-slate-50 border rounded-sm" rows={2} />
                 </div>
                 <div>
                   <label className="block font-semibold text-slate-600 mb-1">Description (EN)</label>
-                  <textarea value={formData.description_en} onChange={(e) => setFormData({ ...formData, description_en: e.target.value })} className="w-full p-2.5 bg-slate-50 border rounded-xl" rows={2} />
+                  <textarea value={formData.description_en} onChange={(e) => setFormData({ ...formData, description_en: e.target.value })} className="w-full p-2.5 bg-slate-50 border rounded-sm" rows={2} />
                 </div>
                 <div className="flex items-center gap-2">
                   <input type="checkbox" id="is_active" checked={formData.is_active === 1} onChange={(e) => setFormData({ ...formData, is_active: e.target.checked ? 1 : 0 })} />
                   <label htmlFor="is_active" className="font-semibold text-slate-700">Service Actif</label>
                 </div>
                 <div className="flex justify-end gap-2 pt-4 border-t">
-                  <button type="button" onClick={() => setShowModal(false)} className="px-4 py-2 bg-slate-100 rounded-xl">Annuler</button>
-                  <button type="submit" className="px-5 py-2 bg-digitBlue text-white font-bold rounded-xl">Enregistrer</button>
+                  <button type="button" onClick={() => setShowModal(false)} className="px-4 py-2 bg-slate-100 rounded-sm">Annuler</button>
+                  <button type="submit" className="px-5 py-2 bg-digitBlue text-white font-bold rounded-sm">Enregistrer</button>
                 </div>
               </form>
             </motion.div>

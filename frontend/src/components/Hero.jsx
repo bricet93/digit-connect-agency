@@ -47,7 +47,7 @@ export default function Hero() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               href="#quote-section"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-digitBlue hover:bg-digitPink text-white font-bold px-8 py-4 rounded-2xl text-sm transition-colors duration-500 shadow-md hover:shadow-lg cursor-pointer"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-digitBlue hover:bg-digitPink text-white font-bold px-8 py-4 rounded-sm text-sm transition-colors duration-500 shadow-md hover:shadow-lg cursor-pointer"
             >
               <span>{t('hero_btn_quote', 'Lancer mon projet')}</span>
               <ArrowRight size={18} />
@@ -56,7 +56,7 @@ export default function Hero() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               href="#portfolio"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-bold px-8 py-4 rounded-2xl text-sm border border-slate-200 shadow-xs transition-all cursor-pointer"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-bold px-8 py-4 rounded-sm text-sm border border-slate-200 shadow-xs transition-all cursor-pointer"
             >
               <span>{t('hero_btn_portfolio', 'Découvrir nos travaux')}</span>
             </motion.a>

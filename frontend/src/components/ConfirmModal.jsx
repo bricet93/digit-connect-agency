@@ -30,7 +30,7 @@ export default function ConfirmModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ duration: 0.2 }}
-            className="relative bg-white rounded-2xl border border-slate-200 shadow-2xl p-6 w-full max-w-md z-10 overflow-hidden"
+            className="relative bg-white rounded-sm border border-slate-200 shadow-2xl p-6 w-full max-w-md z-10 overflow-hidden"
           >
             <button
               onClick={onClose}
@@ -40,7 +40,7 @@ export default function ConfirmModal({
             </button>
 
             <div className="flex items-start gap-4 mb-4">
-              <div className="p-3 bg-digitPink/10 text-digitPink rounded-xl border border-digitPink/20 shrink-0">
+              <div className="p-3 bg-digitPink/10 text-digitPink rounded-sm border border-digitPink/20 shrink-0">
                 <AlertTriangle size={24} />
               </div>
               <div>
@@ -52,7 +52,7 @@ export default function ConfirmModal({
             <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-slate-100">
               <button
                 onClick={onClose}
-                className="px-4 py-2 text-xs font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors cursor-pointer"
+                className="px-4 py-2 text-xs font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-sm transition-colors cursor-pointer"
               >
                 {cancelText}
               </button>
@@ -61,7 +61,7 @@ export default function ConfirmModal({
                   onConfirm();
                   onClose();
                 }}
-                className="px-4 py-2 text-xs font-bold text-white bg-digitBlue hover:bg-digitPink rounded-xl shadow-md transition-all cursor-pointer"
+                className="px-4 py-2 text-xs font-bold text-white bg-digitBlue hover:bg-digitPink rounded-sm shadow-md transition-all cursor-pointer"
               >
                 {confirmText}
               </button>

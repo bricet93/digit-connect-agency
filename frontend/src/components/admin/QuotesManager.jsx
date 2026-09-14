@@ -41,7 +41,7 @@ export default function QuotesManager() {
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs text-left">
+    <div className="bg-white rounded-sm border border-slate-200 p-6 shadow-xs text-left">
       <h2 className="text-xl font-extrabold text-slate-900 mb-4">Gestion des Devis Client</h2>
       <div className="overflow-x-auto">
         <table className="w-full text-xs text-slate-600">
@@ -76,13 +76,13 @@ export default function QuotesManager() {
                         href={`http://localhost:5000/api/quotes/${displayCode}/pdf`} 
                         target="_blank" 
                         rel="noreferrer" 
-                        className="p-2 text-digitBlue bg-blue-50 rounded-lg hover:bg-blue-100"
+                        className="p-2 text-digitBlue bg-blue-50 rounded-sm hover:bg-blue-100"
                       >
                         <Download size={14} />
                       </a>
                       <button 
                         onClick={() => handleDeleteClick(q, displayCode)} 
-                        className="p-2 text-rose-600 bg-rose-50 rounded-lg hover:bg-rose-100 cursor-pointer"
+                        className="p-2 text-rose-600 bg-rose-50 rounded-sm hover:bg-rose-100 cursor-pointer"
                       >
                         <Trash2 size={14} />
                       </button>

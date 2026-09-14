@@ -40,11 +40,11 @@ export default function MessagesManager() {
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs text-left">
+    <div className="bg-white rounded-sm border border-slate-200 p-6 shadow-xs text-left">
       <h2 className="text-xl font-extrabold text-slate-900 mb-4">Messages Reçus</h2>
       <div className="space-y-4">
         {messages.map((m) => (
-          <div key={m.id} className="p-4 border border-slate-200 rounded-xl bg-slate-50 flex justify-between items-start">
+          <div key={m.id} className="p-4 border border-slate-200 rounded-sm bg-slate-50 flex justify-between items-start">
             <div className="space-y-1">
               <div className="flex items-center gap-3">
                 <h4 className="font-bold text-slate-900 text-sm">{m.full_name}</h4>
@@ -57,7 +57,7 @@ export default function MessagesManager() {
                 {m.phone && <span className="flex items-center gap-1"><Phone size={12}/> {m.phone}</span>}
               </div>
             </div>
-            <button onClick={() => handleDeleteClick(m)} className="p-2 text-rose-600 bg-rose-50 rounded-lg hover:bg-rose-100 cursor-pointer"><Trash2 size={14} /></button>
+            <button onClick={() => handleDeleteClick(m)} className="p-2 text-rose-600 bg-rose-50 rounded-sm hover:bg-rose-100 cursor-pointer"><Trash2 size={14} /></button>
           </div>
         ))}
       </div>

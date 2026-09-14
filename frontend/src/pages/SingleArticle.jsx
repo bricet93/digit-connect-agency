@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 import { ArrowLeft, Calendar, Eye, Tag, ChevronRight, Newspaper } from 'lucide-react';
 import Header from '../components/Header';
 
+import SEO from '../components/SEO';
+
 export default function SingleArticle() {
   const { slug } = useParams();
   const { i18n } = useTranslation();
@@ -51,6 +53,19 @@ export default function SingleArticle() {
   if (error || !article) {
     return (
       <div className="min-h-screen bg-slate-50 text-slate-800">
+        <SEO 
+          title={article.title}
+          description={article.summary || article.content.substring(0, 160)}
+          image={article.image_url}
+          type="article"
+        />
+
+        <Helmet>
+          <script type="application/ld+json">
+            {JSON.stringify(jsonLdData)}
+          </script>
+        </Helmet>
+        
         {/* Conteneur Header sécurisé */}
         <div className="sticky top-0 z-50 bg-white">
           <Header />
@@ -67,6 +82,27 @@ export default function SingleArticle() {
 
   const title = currentLang === 'en' && article.title_en ? article.title_en : article.title_fr;
   const content = currentLang === 'en' && article.content_en ? article.content_en : article.content_fr;
+
+  // Schema sémantique JSON-LD pour les articles Google News / Search
+  const jsonLdData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": article.title,
+    "image": article.image_url,
+    "author": {
+      "@type": "Organization",
+      "name": "DIGIT-CONNECT"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "DIGIT-CONNECT",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://digit-connect.cm/IconWhite.svg"
+      }
+    },
+    "datePublished": article.created_at
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 relative">
@@ -94,7 +130,7 @@ export default function SingleArticle() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
           
-          <div className="lg:col-span-2 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+          <div className="lg:col-span-2 bg-white p-6 sm:p-8 rounded-sm border border-slate-200 shadow-sm">
             <div className="mb-8">
               <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-500 mb-3">
                 <span className="bg-digitBlue/10 text-digitBlue px-3 py-1 rounded-full uppercase flex items-center gap-1 font-bold">
@@ -115,7 +151,7 @@ export default function SingleArticle() {
             </div>
 
             {article.cover_image && (
-              <div className="rounded-xl overflow-hidden shadow-xs mb-8 border border-slate-200">
+              <div className="rounded-sm overflow-hidden shadow-xs mb-8 border border-slate-200">
                 <img 
                   src={article.cover_image} 
                   alt={title} 
@@ -132,7 +168,7 @@ export default function SingleArticle() {
 
           {/* 2. Sidebar ajustée avec z-10 pour ne pas gêner le Header */}
           <aside className="lg:col-span-1 space-y-6 sticky top-28 z-10">
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <div className="bg-white p-6 rounded-sm border border-slate-200 shadow-sm">
               <div className="flex items-center gap-2 mb-6 pb-3 border-b border-slate-100">
                 <Newspaper className="text-digitBlue" size={20} />
                 <h3 className="text-base font-extrabold text-slate-900">
@@ -153,13 +189,13 @@ export default function SingleArticle() {
                       <Link
                         key={item.id}
                         to={`/blog/${item.slug}`}
-                        className="group flex gap-3.5 items-start p-2.5 rounded-xl hover:bg-slate-50 transition-all border border-transparent hover:border-slate-200"
+                        className="group flex gap-3.5 items-start p-2.5 rounded-sm hover:bg-slate-50 transition-all border border-transparent hover:border-slate-200"
                       >
                         {item.cover_image && (
                           <img
                             src={item.cover_image}
                             alt={itemTitle}
-                            className="w-16 h-16 rounded-lg object-cover shrink-0 border border-slate-200"
+                            className="w-16 h-16 rounded-sm object-cover shrink-0 border border-slate-200"
                           />
                         )}
                         <div className="flex-1 min-w-0">

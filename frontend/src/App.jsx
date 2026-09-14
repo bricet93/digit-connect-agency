@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './i18n/i18n.js';
 import Header from './components/Header';
 import Hero from './components/Hero.jsx';
@@ -10,18 +10,28 @@ import BlogSection from './components/BlogSection';
 import TeamSection from './components/TeamSection.jsx';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer.jsx';
-import { ArrowUp, Loader2 } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
+
+import introVideo from './media/intro-logo.mp4';
+
+import SEO from './components/SEO.jsx';
 
 export default function App() {
   const [pageLoading, setPageLoading] = useState(true);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const videoRef = useRef(null);
 
-  // Écran de chargement doux au premier rendu
+  const handleVideoEnd = () => {
+    setPageLoading(false);
+  };
+
   useEffect(() => {
-    const timer = setTimeout(() => {
+    // Sécurité : si la vidéo dure au max 10s ou met du temps à charger, on débloque après 10s
+    const maxTimer = setTimeout(() => {
       setPageLoading(false);
-    }, 500);
-    return () => clearTimeout(timer);
+    }, 10000);
+
+    return () => clearTimeout(maxTimer);
   }, []);
 
   // Écoute du défilement pour le bouton "Retour en haut"
@@ -42,21 +52,35 @@ export default function App() {
 
   if (pageLoading) {
     return (
-      <div className="fixed inset-0 z-50 bg-white flex flex-col items-center justify-center transition-opacity duration-500">
-        <div className="flex flex-col items-center gap-4 animate-fade-in">
-          <div className="w-12 h-12 rounded-full border-4 border-slate-100 border-t-digitBlue animate-spin flex items-center justify-center">
-            <Loader2 className="animate-spin text-digitPink" size={20} />
-          </div>
-          <span className="text-xs font-black tracking-widest uppercase text-digitBlue">
-            DIGIT-CONNECT AGENCY
-          </span>
-        </div>
+      <div className="fixed inset-0 z-50 bg-black flex items-center justify-center overflow-hidden">
+        <video
+          ref={videoRef}
+          src={introVideo}
+          autoPlay
+          muted
+          playsInline
+          onEnded={handleVideoEnd}
+          className="w-full h-full object-cover"
+        />
+        {/* Bouton Passer */}
+        <button
+          onClick={() => setPageLoading(false)}
+          className="absolute bottom-6 right-6 text-white/70 hover:text-white text-xs font-semibold uppercase tracking-widest bg-black/40 hover:bg-black/70 px-4 py-2 rounded-full backdrop-blur-md transition-all cursor-pointer border border-white/20 z-10"
+        >
+          Passer
+        </button>
       </div>
     );
   }
 
   return (
     <div className="min-h-screen bg-white text-slate-800 font-sans antialiased selection:bg-digitBlue selection:text-white animate-fade-in">
+      <SEO 
+        title="Accueil"
+        description="DIGIT-CONNECT est votre partenaire technologique à Douala. Agence spécialisée en développement sur-mesure, branding et transformation digitale."
+        keywords="agence web douala, devis gratuit site web, entreprise IT cameroun"
+      />
+      
       {/* En-tête Fixe */}
       <Header />
 

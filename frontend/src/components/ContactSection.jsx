@@ -50,8 +50,8 @@ export default function ContactSection() {
           </p>
 
           <div className="space-y-4 pt-4">
-            <div className="flex items-center gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
-              <div className="p-3 bg-digitBlue/10 text-digitBlue rounded-lg">
+            <div className="flex items-center gap-4 bg-white p-4 rounded-sm border border-slate-200 shadow-xs">
+              <div className="p-3 bg-digitBlue/10 text-digitBlue rounded-sm">
                 <MapPin size={20} />
               </div>
               <div>
@@ -60,8 +60,8 @@ export default function ContactSection() {
               </div>
             </div>
 
-            <div className="flex items-center gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
-              <div className="p-3 bg-digitPink/10 text-digitPink rounded-lg">
+            <div className="flex items-center gap-4 bg-white p-4 rounded-sm border border-slate-200 shadow-xs">
+              <div className="p-3 bg-digitPink/10 text-digitPink rounded-sm">
                 <Mail size={20} />
               </div>
               <div>
@@ -70,8 +70,8 @@ export default function ContactSection() {
               </div>
             </div>
 
-            <div className="flex items-center gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
-              <div className="p-3 bg-digitCyan/10 text-digitBlue rounded-lg">
+            <div className="flex items-center gap-4 bg-white p-4 rounded-sm border border-slate-200 shadow-xs">
+              <div className="p-3 bg-digitCyan/10 text-digitBlue rounded-sm">
                 <Phone size={20} />
               </div>
               <div>
@@ -83,17 +83,17 @@ export default function ContactSection() {
         </div>
 
         {/* Formulaire de Contact */}
-        <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-xl hover:shadow-md transition-shadow">
+        <div className="bg-white p-8 rounded-sm border border-slate-200 shadow-xl hover:shadow-md transition-shadow">
           {status.success ? (
             <div className="text-center py-12 space-y-4">
               <CheckCircle size={52} className="text-emerald-500 mx-auto" />
-              <h3 className="text-2xl font-bold text-slate-900">{t('contact_success_title', 'Message envoyé !')}</h3>
+              <h3 className="text-2xl font-bold text-slate-900">{t('contact_success_title', 'Message envoyé avec succès !')}</h3>
               <p className="text-slate-600 text-sm">
-                {t('contact_success_message', 'Merci de nous avoir contactés. Notre équipe vous répondra dans les plus brefs délais.')}
+                {t('contact_success_message', 'Merci pour votre message. Nous vous répondrons dans les plus brefs délais.')}
               </p>
               <button
                 onClick={() => setStatus({ loading: false, success: false, error: null })}
-                className="mt-4 px-6 py-2.5 bg-digitBlue text-white font-bold text-sm rounded-xl hover:bg-digitBlue/90 transition-all cursor-pointer"
+                className="mt-4 px-6 py-2.5 bg-digitBlue text-white font-bold text-sm rounded-sm hover:bg-digitBlue/90 transition-all cursor-pointer"
               >
                 {t('contact_another_message', 'Envoyer un autre message')}
               </button>
@@ -101,7 +101,7 @@ export default function ContactSection() {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               {status.error && (
-                <div className="p-3 bg-rose-50 border border-rose-200 text-rose-600 text-sm rounded-lg">
+                <div className="p-3 bg-rose-50 border border-rose-200 text-rose-600 text-sm rounded-sm">
                   {status.error}
                 </div>
               )}
@@ -114,7 +114,7 @@ export default function ContactSection() {
                   placeholder={t('contact_full_name_placeholder', 'Votre nom ou le nom de votre entreprise')}
                   value={formData.full_name}
                   onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-                  className="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-800 focus:border-digitBlue focus:bg-white outline-none transition-all text-sm"
+                  className="w-full p-3 bg-slate-50 border border-slate-300 rounded-sm text-slate-800 focus:border-digitBlue focus:bg-white outline-none transition-all text-sm"
                 />
               </div>
 
@@ -127,7 +127,7 @@ export default function ContactSection() {
                     placeholder={t('contact_email_placeholder', 'nom@domaine.com')}
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-800 focus:border-digitBlue focus:bg-white outline-none transition-all text-sm"
+                    className="w-full p-3 bg-slate-50 border border-slate-300 rounded-sm text-slate-800 focus:border-digitBlue focus:bg-white outline-none transition-all text-sm"
                   />
                 </div>
                 <div>
@@ -137,7 +137,7 @@ export default function ContactSection() {
                     placeholder="+237 ..."
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-800 focus:border-digitBlue focus:bg-white outline-none transition-all text-sm"
+                    className="w-full p-3 bg-slate-50 border border-slate-300 rounded-sm text-slate-800 focus:border-digitBlue focus:bg-white outline-none transition-all text-sm"
                   />
                 </div>
               </div>
@@ -149,7 +149,7 @@ export default function ContactSection() {
                   placeholder={t('contact_subject_placeholder', 'De quoi s\'agit-il ?')}
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  className="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-800 focus:border-digitBlue focus:bg-white outline-none transition-all text-sm"
+                  className="w-full p-3 bg-slate-50 border border-slate-300 rounded-sm text-slate-800 focus:border-digitBlue focus:bg-white outline-none transition-all text-sm"
                 />
               </div>
 
@@ -161,14 +161,14 @@ export default function ContactSection() {
                   placeholder={t('contact_message_placeholder', 'Décrivez votre besoin...')}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-800 focus:border-digitBlue focus:bg-white outline-none transition-all text-sm resize-none"
+                  className="w-full p-3 bg-slate-50 border border-slate-300 rounded-sm text-slate-800 focus:border-digitBlue focus:bg-white outline-none transition-all text-sm resize-none"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={status.loading}
-                className="w-full py-3.5 bg-digitBlue hover:bg-digitBlue/90 text-white font-bold rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                className="w-full py-3.5 bg-digitBlue hover:bg-digitBlue/90 text-white font-bold rounded-sm transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
               >
                 {status.loading ? t('contact_sending', 'Envoi en cours...') : t('contact_send', 'Envoyer le message')} <Send size={16} />
               </button>
