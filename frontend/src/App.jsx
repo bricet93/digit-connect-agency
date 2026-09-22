@@ -81,26 +81,24 @@ export default function App() {
         keywords="agence web douala, devis gratuit site web, entreprise IT cameroun"
       />
       
-      {/* En-tête Fixe */}
       <Header />
-
-      {/* Sections Principales */}
+      
       <Hero />
-      <Services />
 
-      {/* Section Générateur de Devis */}
+      <Services />
+      
       <QuoteStepper />
       
-     {/* Réalisations & Partenaires */}
       <PortfolioSection />
+
       <TrustSlider />
-
-      {/* Équipe & Blog */}
+      
       <TeamSection />
-      <BlogSection />
-
-      {/* Contact & Pied de Page */}
+      
       <ContactSection />
+
+      <BlogSection />
+      
       <Footer />
 
       {/* Bouton Flottant Fixe : Retour au Hero (Smooth) */}

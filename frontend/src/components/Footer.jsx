@@ -25,13 +25,13 @@ export default function Footer() {
           </p>
 
           <div className="flex items-center gap-3 pt-2">
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-2.5 bg-slate-800 hover:bg-slate-300 text-slate-300 hover:text-slate-800 rounded-sm transition-all duration-500">
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-2.5 bg-slate-800 hover:bg-slate-300 text-slate-300 hover:text-slate-800 rounded-lg transition-all duration-500">
               <FaLinkedinIn />
             </a>
-            <a href="https://facebook.com" target="_blank" rel="noreferrer" className="p-2.5 bg-slate-800 hover:bg-slate-300 text-slate-300 hover:text-slate-800 rounded-sm transition-all duration-500">
+            <a href="https://facebook.com" target="_blank" rel="noreferrer" className="p-2.5 bg-slate-800 hover:bg-slate-300 text-slate-300 hover:text-slate-800 rounded-lg transition-all duration-500">
               <FaFacebookF />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="p-2.5 bg-slate-800 hover:bg-slate-300 text-slate-300 hover:text-slate-800 rounded-sm transition-all duration-500">
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="p-2.5 bg-slate-800 hover:bg-slate-300 text-slate-300 hover:text-slate-800 rounded-lg transition-all duration-500">
               <FaInstagram />
             </a>
           </div>

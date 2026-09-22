@@ -136,26 +136,26 @@ export default function ServiceCatalogManager() {
           <h2 className="text-xl font-black text-slate-900">Gestion du Catalogue Services</h2>
           <p className="text-xs text-slate-500">Ajoutez, modifiez ou supprimez les prestations synchronisées avec l'application.</p>
         </div>
-        <button onClick={fetchCatalog} className="p-2 bg-slate-200 hover:bg-slate-300 rounded-sm transition-all cursor-pointer">
+        <button onClick={fetchCatalog} className="p-2 bg-slate-200 hover:bg-slate-300 rounded-lg transition-all cursor-pointer">
           <RefreshCw size={16} />
         </button>
       </div>
 
       {formError && (
-        <div className="p-3 bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold rounded-sm flex items-center gap-2">
+        <div className="p-3 bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold rounded-lg flex items-center gap-2">
           <AlertCircle size={16} />
           {formError}
         </div>
       )}
 
       {formSuccess && (
-        <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold rounded-sm flex items-center gap-2">
+        <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold rounded-lg flex items-center gap-2">
           <CheckCircle2 size={16} />
           {formSuccess}
         </div>
       )}
 
-      <form onSubmit={handleSave} className="p-5 bg-white rounded-sm border border-slate-200 shadow-xs space-y-4">
+      <form onSubmit={handleSave} className="p-5 bg-white rounded-lg border border-slate-200 shadow-xs space-y-4">
         <h3 className="text-sm font-bold text-digitBlue">{editingId ? 'Modifier le service' : 'Ajouter un nouveau service'}</h3>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -168,7 +168,7 @@ export default function ServiceCatalogManager() {
                 placeholder="ID unique (ex: strat_comm)"
                 value={formData.id}
                 onChange={(e) => setFormData({ ...formData, id: e.target.value.toLowerCase().replace(/\s+/g, '_') })}
-                className={`w-full p-2.5 bg-slate-50 border rounded-sm text-xs outline-none transition-all disabled:opacity-50 ${
+                className={`w-full p-2.5 bg-slate-50 border rounded-lg text-xs outline-none transition-all disabled:opacity-50 ${
                   idStatus.available === true ? 'border-emerald-500 focus:border-emerald-600' :
                   idStatus.available === false ? 'border-rose-500 focus:border-rose-600' :
                   'border-slate-200 focus:border-digitBlue'
@@ -197,7 +197,7 @@ export default function ServiceCatalogManager() {
             placeholder="Groupe FR (ex: Solutions IT & Design)"
             value={formData.group_fr}
             onChange={(e) => setFormData({ ...formData, group_fr: e.target.value })}
-            className="p-2.5 bg-slate-50 border border-slate-200 rounded-sm text-xs outline-none focus:border-digitBlue"
+            className="p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs outline-none focus:border-digitBlue"
           />
           <input
             type="text"
@@ -205,7 +205,7 @@ export default function ServiceCatalogManager() {
             placeholder="Groupe EN (ex: IT & Design Solutions)"
             value={formData.group_en}
             onChange={(e) => setFormData({ ...formData, group_en: e.target.value })}
-            className="p-2.5 bg-slate-50 border border-slate-200 rounded-sm text-xs outline-none focus:border-digitBlue"
+            className="p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs outline-none focus:border-digitBlue"
           />
           <input
             type="text"
@@ -213,7 +213,7 @@ export default function ServiceCatalogManager() {
             placeholder="Nom du Service (FR)"
             value={formData.name_fr}
             onChange={(e) => setFormData({ ...formData, name_fr: e.target.value })}
-            className="p-2.5 bg-slate-50 border border-slate-200 rounded-sm text-xs outline-none focus:border-digitBlue"
+            className="p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs outline-none focus:border-digitBlue"
           />
           <input
             type="text"
@@ -221,7 +221,7 @@ export default function ServiceCatalogManager() {
             placeholder="Nom du Service (EN)"
             value={formData.name_en}
             onChange={(e) => setFormData({ ...formData, name_en: e.target.value })}
-            className="p-2.5 bg-slate-50 border border-slate-200 rounded-sm text-xs outline-none focus:border-digitBlue"
+            className="p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs outline-none focus:border-digitBlue"
           />
           <input
             type="number"
@@ -229,7 +229,7 @@ export default function ServiceCatalogManager() {
             placeholder="Prix (FCFA)"
             value={formData.price}
             onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-            className="p-2.5 bg-slate-50 border border-slate-200 rounded-sm text-xs outline-none focus:border-digitBlue"
+            className="p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs outline-none focus:border-digitBlue"
           />
         </div>
 
@@ -243,7 +243,7 @@ export default function ServiceCatalogManager() {
                 setIdStatus({ checking: false, available: null, message: '' });
                 setFormError(null);
               }}
-              className="px-4 py-2 bg-slate-100 text-slate-600 rounded-sm text-xs font-bold flex items-center gap-1 cursor-pointer"
+              className="px-4 py-2 bg-slate-100 text-slate-600 rounded-lg text-xs font-bold flex items-center gap-1 cursor-pointer"
             >
               <X size={14} /> Annuler
             </button>
@@ -251,14 +251,14 @@ export default function ServiceCatalogManager() {
           <button
             type="submit"
             disabled={!editingId && idStatus.available === false}
-            className="px-5 py-2 bg-digitBlue hover:bg-digitBlue/90 disabled:opacity-50 text-white rounded-sm text-xs font-bold flex items-center gap-1 shadow-md cursor-pointer transition-all"
+            className="px-5 py-2 bg-digitBlue hover:bg-digitBlue/90 disabled:opacity-50 text-white rounded-lg text-xs font-bold flex items-center gap-1 shadow-md cursor-pointer transition-all"
           >
             <Save size={14} /> {editingId ? 'Mettre à jour' : 'Enregistrer'}
           </button>
         </div>
       </form>
 
-      <div className="bg-white rounded-sm border border-slate-200 overflow-hidden shadow-xs">
+      <div className="bg-white rounded-lg border border-slate-200 overflow-hidden shadow-xs">
         <table className="w-full text-left text-xs border-collapse">
           <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 font-bold uppercase">
             <tr>
@@ -286,10 +286,10 @@ export default function ServiceCatalogManager() {
                 </td>
                 <td className="p-3 text-right">
                   <div className="flex gap-2 justify-end">
-                    <button onClick={() => handleEdit(item)} className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-sm cursor-pointer">
+                    <button onClick={() => handleEdit(item)} className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg cursor-pointer">
                       <Edit2 size={15} />
                     </button>
-                    <button onClick={() => handleDeleteClick(item)} className="p-1.5 text-rose-600 hover:bg-rose-50 rounded-sm cursor-pointer">
+                    <button onClick={() => handleDeleteClick(item)} className="p-1.5 text-rose-600 hover:bg-rose-50 rounded-lg cursor-pointer">
                       <Trash2 size={15} />
                     </button>
                   </div>

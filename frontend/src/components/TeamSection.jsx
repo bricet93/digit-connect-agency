@@ -85,7 +85,7 @@ export default function TeamSection() {
                   key={m.id} 
                   variants={itemVariants}
                   whileHover={{ y: -6, transition: { duration: 0.2 } }}
-                  className="bg-slate-50 border border-slate-200 rounded-sm p-6 text-center shadow-xs hover:shadow-xl transition-shadow flex flex-col justify-between"
+                  className="bg-slate-50 border border-slate-200 rounded-lg p-6 text-center shadow-xs hover:shadow-xl transition-shadow flex flex-col justify-between"
                 >
                   <div>
                     <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-digitBlue bg-slate-200 flex items-center justify-center">

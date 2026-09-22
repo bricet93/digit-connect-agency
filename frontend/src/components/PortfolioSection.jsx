@@ -4,12 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const TRUST_LOGOS = [
-  { name: 'Partenaire 1', logo: 'https://www.logotouse.com/images/logos/nairobi-colored.svg' },
-  { name: 'Partenaire 2', logo: 'https://www.logotouse.com/images/logos/hudson-colored.svg' },
-  { name: 'Partenaire 3', logo: 'https://www.logotouse.com/images/logos/basel-colored.svg' },
-  { name: 'Partenaire 4', logo: 'https://www.logotouse.com/images/logos/malta-colored.svg' },
-];
+// const TRUST_LOGOS = [
+//   { name: 'Partenaire 1', logo: 'https://www.logotouse.com/images/logos/nairobi-colored.svg' },
+//   { name: 'Partenaire 2', logo: 'https://www.logotouse.com/images/logos/hudson-colored.svg' },
+//   { name: 'Partenaire 3', logo: 'https://www.logotouse.com/images/logos/basel-colored.svg' },
+//   { name: 'Partenaire 4', logo: 'https://www.logotouse.com/images/logos/malta-colored.svg' },
+// ];
 
 export default function PortfolioSection() {
   const { t, i18n } = useTranslation();
@@ -33,13 +33,13 @@ export default function PortfolioSection() {
 
   return (
     <section id="portfolio" className="py-20 border-t border-slate-200/60">
-      <div className="max-w-7xl mx-auto px-4 text-center mb-16">
+      {/* <div className="max-w-7xl mx-auto px-4 text-center mb-16">
         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70">
           {TRUST_LOGOS.map((item, index) => (
             <img key={index} src={item.logo} alt={item.name} className="h-8 md:h-10 object-contain hover:scale-105 grayscale hover:grayscale-0 transition-all duration-500" />
           ))}
         </div>
-      </div>
+      </div> */}
 
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
@@ -68,7 +68,7 @@ export default function PortfolioSection() {
             <button
               key={cat.id}
               onClick={() => setFilter(cat.id)}
-              className={`px-4 py-2 rounded-sm text-xs font-bold transition-all cursor-pointer ${
+              className={`px-4 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 filter === cat.id
                   ? 'bg-digitBlue text-white shadow-md'
                   : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
@@ -91,7 +91,7 @@ export default function PortfolioSection() {
               <motion.div 
                 layout
                 key={p.id} 
-                className={`bg-white rounded-sm border border-slate-200 overflow-hidden shadow-xs transition-all duration-500 group flex flex-col justify-between ${
+                className={`bg-white rounded-lg border border-slate-200 overflow-hidden shadow-xs transition-all duration-500 group flex flex-col justify-between ${
                   isMatch 
                     ? 'opacity-100 scale-100 grayscale-0 hover:shadow-xl hover:-translate-y-1' 
                     : 'opacity-50 scale-95 grayscale hover:grayscale-0 hover:opacity-80'
@@ -104,7 +104,7 @@ export default function PortfolioSection() {
                       alt={title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <span className="absolute top-3 left-3 text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 bg-slate-900/80 text-white backdrop-blur-xs rounded-sm">
+                    <span className="absolute top-3 left-3 text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 bg-slate-900/80 text-white backdrop-blur-xs rounded-lg">
                       {p.category ? p.category.replace('_', ' ') : 'Projet'}
                     </span>
                   </div>

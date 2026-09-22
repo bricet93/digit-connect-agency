@@ -92,7 +92,7 @@ export default function Dashboard() {
       <aside className="w-64 bg-slate-900 text-white flex flex-col justify-between p-4 sticky top-0 h-screen border-r border-slate-800">
         <div>
           <div className="flex items-center gap-3 px-3 py-4 mb-6 border-b border-slate-800">
-            <div className="p-2 bg-digitBlue rounded-sm">
+            <div className="p-2 bg-digitBlue rounded-lg">
               <img 
                 src={logoSvg} 
                 alt="DIGIT-CONNECT LOGO" 
@@ -112,7 +112,7 @@ export default function Dashboard() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-sm text-xs font-bold transition-all cursor-pointer ${
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                     activeTab === tab.id 
                       ? 'bg-digitBlue text-white shadow-md' 
                       : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
@@ -128,7 +128,7 @@ export default function Dashboard() {
 
         <button
           onClick={handleLogout}
-          className="w-full flex items-center gap-3 px-4 py-3 rounded-sm text-xs font-bold text-rose-400 hover:bg-rose-500/10 hover:text-rose-300 transition-all cursor-pointer border border-rose-500/20"
+          className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-xs font-bold text-rose-400 hover:bg-rose-500/10 hover:text-rose-300 transition-all cursor-pointer border border-rose-500/20"
         >
           <LogOut size={18} />
           Se déconnecter
@@ -141,7 +141,7 @@ export default function Dashboard() {
           <div className="space-y-8">
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-black text-slate-900">Vue d'ensemble</h2>
-              <span className="text-xs text-slate-500 bg-white px-3 py-1.5 rounded-sm border border-slate-200 font-semibold">
+              <span className="text-xs text-slate-500 bg-white px-3 py-1.5 rounded-lg border border-slate-200 font-semibold">
                 Activité en temps réel
               </span>
             </div>
@@ -162,7 +162,7 @@ export default function Dashboard() {
                   <div 
                     key={idx} 
                     onClick={() => setActiveTab(item.targetTab)}
-                    className={`relative bg-white p-5 rounded-sm border border-slate-200 shadow-xs hover:shadow-md transition-all duration-300 flex items-center justify-between cursor-pointer group ${item.border}`}
+                    className={`relative bg-white p-5 rounded-lg border border-slate-200 shadow-xs hover:shadow-md transition-all duration-300 flex items-center justify-between cursor-pointer group ${item.border}`}
                   >
                     {/* Badge / Point Notification en haut à droite */}
                     {hasData && (
@@ -176,7 +176,7 @@ export default function Dashboard() {
                       <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">{item.label}</span>
                       <h3 className={`text-3xl font-black mt-1 ${item.color}`}>{item.value}</h3>
                     </div>
-                    <div className={`p-3.5 rounded-sm ${item.bg} group-hover:scale-110 transition-transform duration-300`}>
+                    <div className={`p-3.5 rounded-lg ${item.bg} group-hover:scale-110 transition-transform duration-300`}>
                       <Icon className={item.color} size={22} />
                     </div>
                   </div>
@@ -188,7 +188,7 @@ export default function Dashboard() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-4">
               
               {/* Card Aperçu des Devis (Max 5 + Pagination) */}
-              <div className="bg-white rounded-sm border border-slate-200 p-6 shadow-xs flex flex-col justify-between">
+              <div className="bg-white rounded-lg border border-slate-200 p-6 shadow-xs flex flex-col justify-between">
                 <div>
                   <div className="flex justify-between items-center mb-4">
                     <div className="flex items-center gap-2">
@@ -208,7 +208,7 @@ export default function Dashboard() {
                       paginatedQuotes.map((q) => {
                         const displayCode = q.quote_code || `DC-${String(q.id).padStart(4, '0')}`;
                         return (
-                          <div key={q.id} className="p-3 border border-slate-100 rounded-sm bg-slate-50/60 hover:bg-slate-50 flex items-center justify-between transition-colors">
+                          <div key={q.id} className="p-3 border border-slate-100 rounded-lg bg-slate-50/60 hover:bg-slate-50 flex items-center justify-between transition-colors">
                             <div className="space-y-0.5">
                               <span className="text-xs font-bold text-digitBlue">{displayCode}</span>
                               <h4 className="text-xs font-extrabold text-slate-900">{q.client_name}</h4>
@@ -246,14 +246,14 @@ export default function Dashboard() {
                       <button
                         onClick={() => setQuotesPage(p => Math.max(p - 1, 1))}
                         disabled={quotesPage === 1}
-                        className="p-1.5 rounded-sm border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-40 cursor-pointer"
+                        className="p-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-40 cursor-pointer"
                       >
                         <ChevronLeft size={14} />
                       </button>
                       <button
                         onClick={() => setQuotesPage(p => Math.min(p + 1, totalQuotesPages))}
                         disabled={quotesPage === totalQuotesPages}
-                        className="p-1.5 rounded-sm border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-40 cursor-pointer"
+                        className="p-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-40 cursor-pointer"
                       >
                         <ChevronRight size={14} />
                       </button>
@@ -263,7 +263,7 @@ export default function Dashboard() {
               </div>
 
               {/* Card Aperçu des Messages (Max 5 + Pagination) */}
-              <div className="bg-white rounded-sm border border-slate-200 p-6 shadow-xs flex flex-col justify-between">
+              <div className="bg-white rounded-lg border border-slate-200 p-6 shadow-xs flex flex-col justify-between">
                 <div>
                   <div className="flex justify-between items-center mb-4">
                     <div className="flex items-center gap-2">
@@ -281,7 +281,7 @@ export default function Dashboard() {
                   <div className="space-y-3">
                     {paginatedMessages.length > 0 ? (
                       paginatedMessages.map((m) => (
-                        <div key={m.id} className="p-3 border border-slate-100 rounded-sm bg-slate-50/60 hover:bg-slate-50 transition-colors space-y-1">
+                        <div key={m.id} className="p-3 border border-slate-100 rounded-lg bg-slate-50/60 hover:bg-slate-50 transition-colors space-y-1">
                           <div className="flex justify-between items-center">
                             <h4 className="text-xs font-extrabold text-slate-900">{m.full_name}</h4>
                             <span className="text-[10px] text-slate-400">
@@ -308,14 +308,14 @@ export default function Dashboard() {
                       <button
                         onClick={() => setMessagesPage(p => Math.max(p - 1, 1))}
                         disabled={messagesPage === 1}
-                        className="p-1.5 rounded-sm border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-40 cursor-pointer"
+                        className="p-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-40 cursor-pointer"
                       >
                         <ChevronLeft size={14} />
                       </button>
                       <button
                         onClick={() => setMessagesPage(p => Math.min(p + 1, totalMessagesPages))}
                         disabled={messagesPage === totalMessagesPages}
-                        className="p-1.5 rounded-sm border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-40 cursor-pointer"
+                        className="p-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-40 cursor-pointer"
                       >
                         <ChevronRight size={14} />
                       </button>

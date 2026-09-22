@@ -16,7 +16,7 @@ const pool = mysql.createPool({
 // Test de connexion rapide
 try {
   const connection = await pool.getConnection();
-  console.log('✅ BDD MySQL connectée avec succès à WampServer !');
+  console.log('✅ BD MySQL connectée avec succès !');
   connection.release();
 } catch (error) {
   console.error('❌ Erreur de connexion à MySQL :', error.message);

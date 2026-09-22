@@ -162,7 +162,7 @@ export default function PortfolioManager() {
   };
 
   return (
-    <div className="bg-white rounded-sm border border-slate-200 p-6 text-left shadow-xs">
+    <div className="bg-white rounded-lg border border-slate-200 p-6 text-left shadow-xs">
       <div className="flex justify-between items-center mb-6 border-b border-slate-100 pb-4">
         <div>
           <h2 className="text-xl font-extrabold text-slate-900">Portfolio & Réalisations</h2>
@@ -170,7 +170,7 @@ export default function PortfolioManager() {
         </div>
         <button 
           onClick={() => handleOpen()} 
-          className="flex items-center gap-2 bg-digitBlue hover:bg-digitBlue/90 text-white font-bold text-xs px-4 py-2.5 rounded-sm cursor-pointer transition-all shadow-xs"
+          className="flex items-center gap-2 bg-digitBlue hover:bg-digitBlue/90 text-white font-bold text-xs px-4 py-2.5 rounded-lg cursor-pointer transition-all shadow-xs"
         >
           <Plus size={16}/> Ajouter Un Projet
         </button>
@@ -178,10 +178,10 @@ export default function PortfolioManager() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {items.map(item => (
-          <div key={item.id} className="border border-slate-200 rounded-sm p-4 bg-slate-50/50 flex flex-col justify-between hover:border-slate-300 transition-all">
+          <div key={item.id} className="border border-slate-200 rounded-lg p-4 bg-slate-50/50 flex flex-col justify-between hover:border-slate-300 transition-all">
             <div>
               <div className="relative mb-3">
-                <img src={item.image_url} alt={item.title_fr} className="h-40 w-full object-cover rounded-sm border border-slate-200" />
+                <img src={item.image_url} alt={item.title_fr} className="h-40 w-full object-cover rounded-lg border border-slate-200" />
                 <span className="absolute top-2 left-2 bg-slate-900/80 text-white backdrop-blur-md text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">
                   {item.category?.replace('_', ' ')}
                 </span>
@@ -208,14 +208,14 @@ export default function PortfolioManager() {
               <div className="flex gap-2">
                 <button 
                   onClick={() => handleOpen(item)} 
-                  className="p-2 text-slate-600 bg-white hover:text-digitBlue rounded-sm border border-slate-200 shadow-2xs transition-all cursor-pointer"
+                  className="p-2 text-slate-600 bg-white hover:text-digitBlue rounded-lg border border-slate-200 shadow-2xs transition-all cursor-pointer"
                   title="Éditer"
                 >
                   <Edit3 size={14}/>
                 </button>
                 <button 
                   onClick={() => handleDeleteClick(item)} 
-                  className="p-2 text-rose-600 bg-rose-50 hover:bg-rose-100 rounded-sm transition-all cursor-pointer"
+                  className="p-2 text-rose-600 bg-rose-50 hover:bg-rose-100 rounded-lg transition-all cursor-pointer"
                   title="Supprimer"
                 >
                   <Trash2 size={14}/>
@@ -228,12 +228,12 @@ export default function PortfolioManager() {
 
       {isOpen && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-sm max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 shadow-2xl">
+          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 shadow-2xl">
             <div className="flex justify-between items-center p-5 border-b border-slate-100 sticky top-0 bg-white z-10">
               <h3 className="font-extrabold text-slate-900 text-lg">
                 {editItem ? 'Éditer le Projet' : 'Nouveau Projet'}
               </h3>
-              <button onClick={() => setIsOpen(false)} className="text-slate-400 hover:text-slate-600 p-1 rounded-sm cursor-pointer">
+              <button onClick={() => setIsOpen(false)} className="text-slate-400 hover:text-slate-600 p-1 rounded-lg cursor-pointer">
                 <X size={20} />
               </button>
             </div>
@@ -273,7 +273,7 @@ export default function PortfolioManager() {
                       placeholder="ex: Refonte Identité & Plateforme Web" 
                       value={form.title_fr} 
                       onChange={e => setForm({...form, title_fr: e.target.value})} 
-                      className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" 
+                      className="w-full border border-slate-300 p-3 rounded-lg text-xs outline-none focus:border-digitBlue" 
                       required 
                     />
                   </div>
@@ -283,7 +283,7 @@ export default function PortfolioManager() {
                       placeholder="Présentation synthétique du projet réalisé..." 
                       value={form.description_fr} 
                       onChange={e => setForm({...form, description_fr: e.target.value})} 
-                      className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" 
+                      className="w-full border border-slate-300 p-3 rounded-lg text-xs outline-none focus:border-digitBlue" 
                       rows={4} 
                     />
                   </div>
@@ -299,7 +299,7 @@ export default function PortfolioManager() {
                       placeholder="ex: Brand Redesign & Web Platform" 
                       value={form.title_en} 
                       onChange={e => setForm({...form, title_en: e.target.value})} 
-                      className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" 
+                      className="w-full border border-slate-300 p-3 rounded-lg text-xs outline-none focus:border-digitBlue" 
                       required 
                     />
                   </div>
@@ -309,7 +309,7 @@ export default function PortfolioManager() {
                       placeholder="Summary of the completed project..." 
                       value={form.description_en} 
                       onChange={e => setForm({...form, description_en: e.target.value})} 
-                      className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" 
+                      className="w-full border border-slate-300 p-3 rounded-lg text-xs outline-none focus:border-digitBlue" 
                       rows={4} 
                     />
                   </div>
@@ -324,7 +324,7 @@ export default function PortfolioManager() {
                   <select 
                     value={form.category} 
                     onChange={e => setForm({...form, category: e.target.value})} 
-                    className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue bg-white"
+                    className="w-full border border-slate-300 p-3 rounded-lg text-xs outline-none focus:border-digitBlue bg-white"
                     required
                   >
                     {categories.map(cat => (
@@ -340,7 +340,7 @@ export default function PortfolioManager() {
                     placeholder="ex: Baastel, Kaffo Foods..." 
                     value={form.client_name} 
                     onChange={e => setForm({...form, client_name: e.target.value})} 
-                    className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" 
+                    className="w-full border border-slate-300 p-3 rounded-lg text-xs outline-none focus:border-digitBlue" 
                   />
                 </div>
 
@@ -349,7 +349,7 @@ export default function PortfolioManager() {
                   <label className="block text-xs font-semibold text-slate-700">Image de Couverture</label>
                   
                   <div className="flex flex-col md:flex-row gap-3 items-start md:items-center">
-                    <label className="flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-2 rounded-sm text-xs font-semibold cursor-pointer border border-slate-300 transition-colors">
+                    <label className="flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-2 rounded-lg text-xs font-semibold cursor-pointer border border-slate-300 transition-colors">
                       <Upload size={14} /> Importer un fichier
                       <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
                     </label>
@@ -364,11 +364,11 @@ export default function PortfolioManager() {
                       setForm({...form, image_url: e.target.value});
                       setImagePreview(e.target.value);
                     }} 
-                    className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" 
+                    className="w-full border border-slate-300 p-3 rounded-lg text-xs outline-none focus:border-digitBlue" 
                   />
 
                   {imagePreview && (
-                    <div className="mt-2 relative w-32 h-20 rounded-sm overflow-hidden border border-slate-200">
+                    <div className="mt-2 relative w-32 h-20 rounded-lg overflow-hidden border border-slate-200">
                       <img src={imagePreview} alt="Aperçu" className="w-full h-full object-cover" />
                     </div>
                   )}
@@ -381,7 +381,7 @@ export default function PortfolioManager() {
                     placeholder="https://..." 
                     value={form.project_url} 
                     onChange={e => setForm({...form, project_url: e.target.value})} 
-                    className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" 
+                    className="w-full border border-slate-300 p-3 rounded-lg text-xs outline-none focus:border-digitBlue" 
                   />
                 </div>
               </div>
@@ -390,13 +390,13 @@ export default function PortfolioManager() {
                 <button 
                   type="button" 
                   onClick={() => setIsOpen(false)} 
-                  className="px-4 py-2.5 border border-slate-300 rounded-sm text-xs font-semibold text-slate-700 hover:bg-slate-50 cursor-pointer"
+                  className="px-4 py-2.5 border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-50 cursor-pointer"
                 >
                   Annuler
                 </button>
                 <button 
                   type="submit" 
-                  className="px-5 py-2.5 bg-digitBlue hover:bg-digitBlue/90 text-white rounded-sm text-xs font-bold cursor-pointer transition-all shadow-xs"
+                  className="px-5 py-2.5 bg-digitBlue hover:bg-digitBlue/90 text-white rounded-lg text-xs font-bold cursor-pointer transition-all shadow-xs"
                 >
                   Enregistrer le Projet
                 </button>

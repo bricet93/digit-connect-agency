@@ -25,7 +25,7 @@ app.get('/api/health', (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 Serveur DIGIT-CONNECT démarré sur http://localhost:${PORT}`);
+  console.log(`🚀 Serveur DIGIT-CONNECT démarré sur le port ${PORT}`);
 });
 
 app.use('/api/quotes', quoteRoutes);

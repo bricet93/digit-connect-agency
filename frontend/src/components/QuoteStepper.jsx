@@ -105,7 +105,7 @@ export default function QuoteStepper() {
 
   return (
     <section id="quote-section" className="py-20 px-4 bg-slate-50 border-y border-slate-200/60">
-      <div id="quote" className="max-w-7xl mx-auto bg-white rounded-sm border border-slate-200 shadow-xl hover:shadow-md transition-shadow overflow-hidden grid grid-cols-1 lg:grid-cols-12 text-left">
+      <div id="quote" className="max-w-7xl mx-auto bg-white rounded-lg border border-slate-200 shadow-xl hover:shadow-md transition-shadow overflow-hidden grid grid-cols-1 lg:grid-cols-12 text-left">
 
         {/* Formulaire Stepper à Droite */}
         <div className="lg:col-span-8 p-8 flex flex-col justify-between bg-white">
@@ -152,13 +152,13 @@ export default function QuoteStepper() {
                       <div
                         key={seg.id}
                         onClick={() => setFormData({ ...formData, client_segment: seg.id })}
-                        className={`p-4 rounded-sm border cursor-pointer flex items-center gap-4 transition-all ${
+                        className={`p-4 rounded-lg border cursor-pointer flex items-center gap-4 transition-all ${
                           formData.client_segment === seg.id
                             ? 'border-digitBlue bg-digitBlue/5 shadow-md ring-2 ring-digitBlue/20'
                             : 'border-slate-200 hover:border-slate-300 bg-slate-50/50'
                         }`}
                       >
-                        <div className="p-3 bg-white rounded-sm shadow-xs border border-slate-100">
+                        <div className="p-3 bg-white rounded-lg shadow-xs border border-slate-100">
                           {seg.icon}
                         </div>
                         <div className="flex-1">
@@ -189,7 +189,7 @@ export default function QuoteStepper() {
                 >
                   {Object.entries(groupedServices).map(([groupTitle, services]) => (
                     <div key={groupTitle} className="space-y-2.5">
-                      <h4 className="text-xs font-black uppercase tracking-wider text-digitBlue bg-slate-100 px-3 py-1.5 rounded-sm border-l-4 border-digitBlue">
+                      <h4 className="text-xs font-black uppercase tracking-wider text-digitBlue bg-slate-100 px-3 py-1.5 rounded-lg border-l-4 border-digitBlue">
                         {groupTitle}
                       </h4>
                       <div className="grid grid-cols-1 gap-2">
@@ -199,7 +199,7 @@ export default function QuoteStepper() {
                             <div
                               key={s.id}
                               onClick={() => toggleService(s.id)}
-                              className={`p-3.5 rounded-sm border cursor-pointer flex justify-between items-center transition-all ${
+                              className={`p-3.5 rounded-lg border cursor-pointer flex justify-between items-center transition-all ${
                                 isSelected
                                   ? 'border-digitBlue bg-digitBlue/5 shadow-xs'
                                   : 'border-slate-200 bg-slate-50/60 hover:border-slate-300 hover:bg-white'
@@ -243,7 +243,7 @@ export default function QuoteStepper() {
                       placeholder="Ex: Paul Mbida / Sinergii Sarl"
                       value={formData.client_name}
                       onChange={(e) => setFormData({ ...formData, client_name: e.target.value })}
-                      className="w-full p-3 bg-slate-50 border border-slate-200 rounded-sm text-xs text-slate-800 focus:border-digitBlue focus:bg-white outline-none transition-all"
+                      className="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-800 focus:border-digitBlue focus:bg-white outline-none transition-all"
                     />
                   </div>
                   <div>
@@ -254,7 +254,7 @@ export default function QuoteStepper() {
                       placeholder="Ex: contact@entreprise.cm"
                       value={formData.client_email}
                       onChange={(e) => setFormData({ ...formData, client_email: e.target.value })}
-                      className="w-full p-3 bg-slate-50 border border-slate-200 rounded-sm text-xs text-slate-800 focus:border-digitBlue focus:bg-white outline-none transition-all"
+                      className="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-800 focus:border-digitBlue focus:bg-white outline-none transition-all"
                     />
                   </div>
                   <div>
@@ -265,7 +265,7 @@ export default function QuoteStepper() {
                       placeholder="Ex: +237 600 00 00 00"
                       value={formData.client_phone}
                       onChange={(e) => setFormData({ ...formData, client_phone: e.target.value })}
-                      className="w-full p-3 bg-slate-50 border border-slate-200 rounded-sm text-xs text-slate-800 focus:border-digitBlue focus:bg-white outline-none transition-all"
+                      className="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-800 focus:border-digitBlue focus:bg-white outline-none transition-all"
                     />
                   </div>
                 </motion.div>
@@ -292,7 +292,7 @@ export default function QuoteStepper() {
                       href={`http://localhost:5000/api/quotes/${quoteId}/pdf`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-digitPink hover:bg-digitPink/90 text-white font-bold text-xs px-6 py-3.5 rounded-sm shadow-lg transition-all"
+                      className="inline-flex items-center gap-2 bg-digitPink hover:bg-digitPink/90 text-white font-bold text-xs px-6 py-3.5 rounded-lg shadow-lg transition-all"
                     >
                       <Download size={16} /> {t('download_quote', 'Télécharger mon Devis PDF')}
                     </a>
@@ -300,7 +300,7 @@ export default function QuoteStepper() {
                     <button
                       type="button"
                       onClick={handleReset}
-                      className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-5 py-3.5 rounded-sm transition-all cursor-pointer border border-slate-200"
+                      className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-5 py-3.5 rounded-lg transition-all cursor-pointer border border-slate-200"
                     >
                       <RotateCcw size={15} /> {t('new_quote', 'Nouveau devis')}
                     </button>
@@ -316,7 +316,7 @@ export default function QuoteStepper() {
               {step > 1 ? (
                 <button
                   onClick={() => setStep(step - 1)}
-                  className="flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-700 font-semibold text-xs rounded-sm hover:bg-slate-200 transition-colors cursor-pointer"
+                  className="flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-700 font-semibold text-xs rounded-lg hover:bg-slate-200 transition-colors cursor-pointer"
                 >
                   <ArrowLeft size={14} /> {t('back', 'Retour')}
                 </button>
@@ -325,7 +325,7 @@ export default function QuoteStepper() {
               {step < 3 ? (
                 <button
                   onClick={() => setStep(step + 1)}
-                  className="flex items-center gap-2 px-6 py-2.5 bg-digitBlue text-white text-xs font-bold rounded-sm hover:bg-digitBlue/90 transition-all shadow-md ml-auto cursor-pointer"
+                  className="flex items-center gap-2 px-6 py-2.5 bg-digitBlue text-white text-xs font-bold rounded-lg hover:bg-digitBlue/90 transition-all shadow-md ml-auto cursor-pointer"
                 >
                   {t('next', 'Suivant')} <ArrowRight size={14} />
                 </button>
@@ -333,7 +333,7 @@ export default function QuoteStepper() {
                 <button
                   onClick={handleSubmit}
                   disabled={loading || formData.selected_services.length === 0 || !formData.client_name || !formData.client_email}
-                  className="flex items-center gap-2 px-6 py-2.5 bg-digitPink text-white text-xs font-bold rounded-sm hover:bg-digitPink/90 transition-all shadow-md ml-auto disabled:opacity-50 cursor-pointer"
+                  className="flex items-center gap-2 px-6 py-2.5 bg-digitPink text-white text-xs font-bold rounded-lg hover:bg-digitPink/90 transition-all shadow-md ml-auto disabled:opacity-50 cursor-pointer"
                 >
                   {loading ? t("processing", "Traitement...") : t("generate_quote", "Générer mon Devis")} <CheckCircle size={14} />
                 </button>
@@ -363,7 +363,7 @@ export default function QuoteStepper() {
           </div>
 
           {/* Card Total Estimé Dynamique */}
-          <div className="my-8 p-5 bg-slate-800/80 backdrop-blur-md rounded-sm border border-slate-700/80 shadow-lg">
+          <div className="my-8 p-5 bg-slate-800/80 backdrop-blur-md rounded-lg border border-slate-700/80 shadow-lg">
             <span className="text-[11px] uppercase tracking-wider text-slate-400 font-bold block mb-1">
               {t('total_estimated', 'Total Estimé :')}
             </span>

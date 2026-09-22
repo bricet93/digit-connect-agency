@@ -46,7 +46,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-slate-100 flex items-center justify-center px-4 font-sans text-left">
-      <div className="bg-white p-8 rounded-sm border border-slate-200 shadow-xl max-w-md w-full">
+      <div className="bg-white p-8 rounded-lg border border-slate-200 shadow-xl max-w-md w-full">
         <div className="text-center mb-8">
           <h2 className="text-md font-bold text-slate-800 uppercase mb-2">Back Office</h2>
           <div className="flex items-center justify-center gap-2">
@@ -59,7 +59,7 @@ export default function Login() {
         </div>
 
         {error && (
-          <div className="mb-4 p-3 bg-rose-50 border border-rose-200 text-rose-600 text-xs font-semibold rounded-sm">
+          <div className="mb-4 p-3 bg-rose-50 border border-rose-200 text-rose-600 text-xs font-semibold rounded-lg">
             {error}
           </div>
         )}
@@ -75,7 +75,7 @@ export default function Login() {
                 placeholder="admin@digit-connect.agency"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-10 p-3.5 bg-slate-50 border border-slate-300 rounded-sm text-slate-800 text-xs focus:border-digitBlue focus:bg-white outline-none"
+                className="w-full pl-10 p-3.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 text-xs focus:border-digitBlue focus:bg-white outline-none"
               />
             </div>
           </div>
@@ -90,7 +90,7 @@ export default function Login() {
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-10 p-3.5 bg-slate-50 border border-slate-300 rounded-sm text-slate-800 text-xs focus:border-digitBlue focus:bg-white outline-none"
+                className="w-full pl-10 p-3.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 text-xs focus:border-digitBlue focus:bg-white outline-none"
               />
             </div>
           </div>
@@ -98,7 +98,7 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 bg-digitBlue hover:bg-digitPink text-white font-bold rounded-sm transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer text-xs disabled:opacity-50"
+            className="w-full py-3.5 bg-digitBlue hover:bg-digitPink text-white font-bold rounded-lg transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer text-xs disabled:opacity-50"
           >
             {loading ? 'Vérification...' : 'Se connecter'} <ArrowRight size={16} />
           </button>

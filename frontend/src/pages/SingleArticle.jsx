@@ -5,7 +5,6 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, Calendar, Eye, Tag, ChevronRight, Newspaper } from 'lucide-react';
 import Header from '../components/Header';
-
 import SEO from '../components/SEO';
 
 export default function SingleArticle() {
@@ -14,7 +13,7 @@ export default function SingleArticle() {
   const currentLang = i18n.language || 'fr';
 
   const [article, setArticle] = useState(null);
-  const [otherArticles, setOtherArticles] = useState([]);
+  const [allArticles, setAllArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -30,7 +29,8 @@ export default function SingleArticle() {
         const postsRes = await axios.get(`http://localhost:5000/api/articles`);
         if (postsRes.data.success) {
           const list = Array.isArray(postsRes.data.data) ? postsRes.data.data : postsRes.data.data.posts || [];
-          setOtherArticles(list.filter(p => p.slug !== slug && (p.is_published == 1 || p.is_published === true)));
+          // Récupère TOUS les articles publiés sauf l'actuel
+          setAllArticles(list.filter(p => p.slug !== slug && (Number(p.is_published) === 1 || p.is_published === true)));
         }
       } catch (err) {
         setError("Article introuvable ou erreur serveur.");
@@ -53,21 +53,7 @@ export default function SingleArticle() {
   if (error || !article) {
     return (
       <div className="min-h-screen bg-slate-50 text-slate-800">
-        <SEO 
-          title={article.title}
-          description={article.summary || article.content.substring(0, 160)}
-          image={article.image_url}
-          type="article"
-        />
-
-        <Helmet>
-          <script type="application/ld+json">
-            {JSON.stringify(jsonLdData)}
-          </script>
-        </Helmet>
-        
-        {/* Conteneur Header sécurisé */}
-        <div className="sticky top-0 z-50 bg-white">
+        <div className="sticky top-0 z-50 bg-white shadow-xs">
           <Header />
         </div>
         <div className="max-w-4xl mx-auto px-6 py-20 text-center">
@@ -83,27 +69,6 @@ export default function SingleArticle() {
   const title = currentLang === 'en' && article.title_en ? article.title_en : article.title_fr;
   const content = currentLang === 'en' && article.content_en ? article.content_en : article.content_fr;
 
-  // Schema sémantique JSON-LD pour les articles Google News / Search
-  const jsonLdData = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": article.title,
-    "image": article.image_url,
-    "author": {
-      "@type": "Organization",
-      "name": "DIGIT-CONNECT"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "DIGIT-CONNECT",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://digit-connect.cm/IconWhite.svg"
-      }
-    },
-    "datePublished": article.created_at
-  };
-
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 relative">
       <Helmet>
@@ -115,8 +80,8 @@ export default function SingleArticle() {
         <meta property="og:type" content="article" />
       </Helmet>
       
-      {/* 1. Header placé au premier plan (z-50) */}
-      <div className="sticky top-0 z-50 bg-white">
+      {/* Header Sticky au premier plan (z-50) */}
+      <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200">
         <Header />
       </div>
 
@@ -130,7 +95,8 @@ export default function SingleArticle() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
           
-          <div className="lg:col-span-2 bg-white p-6 sm:p-8 rounded-sm border border-slate-200 shadow-sm">
+          {/* Article principal */}
+          <div className="lg:col-span-2 bg-white p-6 sm:p-8 rounded-lg border border-slate-200 shadow-sm">
             <div className="mb-8">
               <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-500 mb-3">
                 <span className="bg-digitBlue/10 text-digitBlue px-3 py-1 rounded-full uppercase flex items-center gap-1 font-bold">
@@ -141,7 +107,7 @@ export default function SingleArticle() {
                   {new Date(article.created_at).toLocaleDateString(currentLang === 'en' ? 'en-US' : 'fr-FR')}
                 </span>
                 <span className="flex items-center gap-1">
-                  <Eye size={13} /> {article.views_count} {currentLang === 'en' ? 'views' : 'vues'}
+                  <Eye size={13} /> {article.views_count || 0} {currentLang === 'en' ? 'views' : 'vues'}
                 </span>
               </div>
 
@@ -151,7 +117,7 @@ export default function SingleArticle() {
             </div>
 
             {article.cover_image && (
-              <div className="rounded-sm overflow-hidden shadow-xs mb-8 border border-slate-200">
+              <div className="rounded-lg overflow-hidden shadow-xs mb-8 border border-slate-200">
                 <img 
                   src={article.cover_image} 
                   alt={title} 
@@ -166,36 +132,36 @@ export default function SingleArticle() {
             />
           </div>
 
-          {/* 2. Sidebar ajustée avec z-10 pour ne pas gêner le Header */}
-          <aside className="lg:col-span-1 space-y-6 sticky top-28 z-10">
-            <div className="bg-white p-6 rounded-sm border border-slate-200 shadow-sm">
-              <div className="flex items-center gap-2 mb-6 pb-3 border-b border-slate-100">
+          {/* Sidebar Sticky limitée à la hauteur de l'écran avec Scrollbar personnalisée */}
+          <aside className="lg:col-span-1 sticky top-24 z-10 max-h-[calc(100vh-8rem)] flex flex-col">
+            <div className="bg-white p-6 rounded-lg border border-slate-200 shadow-sm flex flex-col max-h-full">
+              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-slate-100 shrink-0">
                 <Newspaper className="text-digitBlue" size={20} />
                 <h3 className="text-base font-extrabold text-slate-900">
-                  {currentLang === 'en' ? 'Other Articles' : 'Autres Articles'}
+                  {currentLang === 'en' ? 'All Articles' : 'Tous les Articles'}
                 </h3>
               </div>
 
-              {otherArticles.length === 0 ? (
+              {allArticles.length === 0 ? (
                 <p className="text-xs text-slate-500 italic">
-                  {currentLang === 'en' ? 'No other articles available.' : 'Aucun autre article disponible pour le moment.'}
+                  {currentLang === 'en' ? 'No other articles available.' : 'Aucun autre article disponible.'}
                 </p>
               ) : (
-                <div className="space-y-4">
-                  {otherArticles.slice(0, 5).map((item) => {
+                <div className="space-y-3 overflow-y-auto pr-1 flex-1 custom-scrollbar">
+                  {allArticles.map((item) => {
                     const itemTitle = currentLang === 'en' && item.title_en ? item.title_en : item.title_fr;
 
                     return (
                       <Link
                         key={item.id}
                         to={`/blog/${item.slug}`}
-                        className="group flex gap-3.5 items-start p-2.5 rounded-sm hover:bg-slate-50 transition-all border border-transparent hover:border-slate-200"
+                        className="group flex gap-3.5 items-start p-2.5 rounded-lg hover:bg-slate-50 transition-all border border-transparent hover:border-slate-200"
                       >
                         {item.cover_image && (
                           <img
                             src={item.cover_image}
                             alt={itemTitle}
-                            className="w-16 h-16 rounded-sm object-cover shrink-0 border border-slate-200"
+                            className="w-14 h-14 rounded-lg object-cover shrink-0 border border-slate-200"
                           />
                         )}
                         <div className="flex-1 min-w-0">

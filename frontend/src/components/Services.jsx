@@ -73,9 +73,9 @@ export default function Services() {
                   }}
                   whileHover={{ y: -5 }}
                   transition={{ duration: 0.3 }}
-                  className="p-8 rounded-sm bg-slate-50 border border-slate-200/70 hover:bg-white hover:border-digitBlue/30 hover:shadow-xl transition-all group"
+                  className="p-8 rounded-lg bg-slate-50 border border-slate-200/70 hover:bg-white hover:border-digitBlue/30 hover:shadow-xl transition-all group"
                 >
-                  <div className="p-3 bg-white rounded-sm w-fit mb-6 border border-slate-200/80 shadow-xs group-hover:scale-110 transition-transform">
+                  <div className="p-3 bg-white rounded-lg w-fit mb-6 border border-slate-200/80 shadow-xs group-hover:scale-110 transition-transform">
                     {icon}
                   </div>
                   <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-digitBlue transition-colors">

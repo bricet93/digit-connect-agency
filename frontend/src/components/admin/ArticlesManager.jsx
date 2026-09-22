@@ -172,7 +172,7 @@ export default function ArticlesManager() {
   };
 
   return (
-    <div className="bg-white rounded-sm border border-slate-200 p-6 text-left shadow-xs">
+    <div className="bg-white rounded-lg border border-slate-200 p-6 text-left shadow-xs">
       <div className="flex justify-between items-center mb-6 border-b border-slate-100 pb-4">
         <div>
           <h2 className="text-xl font-extrabold text-slate-900">Gestion des Articles & Publications</h2>
@@ -180,7 +180,7 @@ export default function ArticlesManager() {
         </div>
         <button 
           onClick={() => handleOpenModal()} 
-          className="flex items-center gap-2 bg-digitBlue hover:bg-digitBlue/90 text-white font-bold text-xs px-4 py-2.5 rounded-sm shadow-xs transition-all cursor-pointer"
+          className="flex items-center gap-2 bg-digitBlue hover:bg-digitBlue/90 text-white font-bold text-xs px-4 py-2.5 rounded-lg shadow-xs transition-all cursor-pointer"
         >
           <Plus size={16} /> Nouvel Article
         </button>
@@ -188,10 +188,10 @@ export default function ArticlesManager() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {articles.map((art) => (
-          <motion.div key={art.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="border border-slate-200 rounded-sm p-4 bg-slate-50/50 flex flex-col justify-between hover:border-slate-300 transition-all">
+          <motion.div key={art.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="border border-slate-200 rounded-lg p-4 bg-slate-50/50 flex flex-col justify-between hover:border-slate-300 transition-all">
             <div>
               <div className="relative mb-3">
-                <img src={art.cover_image || 'https://via.placeholder.com/400x200'} alt={art.title_fr} className="h-40 w-full object-cover rounded-sm border border-slate-200" />
+                <img src={art.cover_image || 'https://via.placeholder.com/400x200'} alt={art.title_fr} className="h-40 w-full object-cover rounded-lg border border-slate-200" />
                 <span className={`absolute top-2 right-2 text-[10px] font-bold px-2.5 py-1 rounded-full text-white ${art.is_published ? 'bg-emerald-500' : 'bg-amber-500'}`}>
                   {art.is_published ? 'Publié' : 'Brouillon'}
                 </span>
@@ -207,8 +207,8 @@ export default function ArticlesManager() {
             <div className="flex justify-between items-center mt-4 pt-3 border-t border-slate-200/60 text-xs text-slate-500">
               <div className="flex items-center gap-1"><Eye size={14} /> {art.views_count || 0} vues</div>
               <div className="flex gap-2">
-                <button onClick={() => handleOpenModal(art)} className="p-2 text-slate-600 bg-white hover:text-digitBlue rounded-sm border border-slate-200 shadow-2xs transition-all cursor-pointer" title="Éditer"><Edit3 size={14} /></button>
-                <button onClick={() => handleDeleteClick(art)} className="p-2 text-rose-600 bg-rose-50 hover:bg-rose-100 rounded-sm transition-all cursor-pointer" title="Supprimer"><Trash2 size={14} /></button>
+                <button onClick={() => handleOpenModal(art)} className="p-2 text-slate-600 bg-white hover:text-digitBlue rounded-lg border border-slate-200 shadow-2xs transition-all cursor-pointer" title="Éditer"><Edit3 size={14} /></button>
+                <button onClick={() => handleDeleteClick(art)} className="p-2 text-rose-600 bg-rose-50 hover:bg-rose-100 rounded-lg transition-all cursor-pointer" title="Supprimer"><Trash2 size={14} /></button>
               </div>
             </div>
           </motion.div>
@@ -218,10 +218,10 @@ export default function ArticlesManager() {
       {/* Modal Rédaction Bilingue Harmonisée */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-sm max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 shadow-2xl">
+          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 shadow-2xl">
             <div className="flex justify-between items-center p-5 border-b border-slate-100 sticky top-0 bg-white z-10">
               <h3 className="font-extrabold text-slate-900 text-lg">{editingArticle ? 'Éditer l\'Article' : 'Nouvel Article'}</h3>
-              <button onClick={() => setIsModalOpen(false)} className="text-slate-400 hover:text-slate-600 p-1 rounded-sm cursor-pointer">
+              <button onClick={() => setIsModalOpen(false)} className="text-slate-400 hover:text-slate-600 p-1 rounded-lg cursor-pointer">
                 <X size={20} />
               </button>
             </div>
@@ -256,30 +256,30 @@ export default function ArticlesManager() {
                 <div className="space-y-4 animate-fade-in">
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Titre de l'Article (FR) *</label>
-                    <input type="text" value={formData.title_fr} onChange={e => setFormData({...formData, title_fr: e.target.value})} className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" required />
+                    <input type="text" value={formData.title_fr} onChange={e => setFormData({...formData, title_fr: e.target.value})} className="w-full border border-slate-300 p-3 rounded-lg text-xs outline-none focus:border-digitBlue" required />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Résumé (FR)</label>
-                    <textarea value={formData.excerpt_fr} onChange={e => setFormData({...formData, excerpt_fr: e.target.value})} className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" rows={2} />
+                    <textarea value={formData.excerpt_fr} onChange={e => setFormData({...formData, excerpt_fr: e.target.value})} className="w-full border border-slate-300 p-3 rounded-lg text-xs outline-none focus:border-digitBlue" rows={2} />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Contenu Complet (FR) *</label>
-                    <textarea value={formData.content_fr} onChange={e => setFormData({...formData, content_fr: e.target.value})} className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" rows={5} required />
+                    <textarea value={formData.content_fr} onChange={e => setFormData({...formData, content_fr: e.target.value})} className="w-full border border-slate-300 p-3 rounded-lg text-xs outline-none focus:border-digitBlue" rows={5} required />
                   </div>
                 </div>
               ) : (
                 <div className="space-y-4 animate-fade-in">
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Article Title (EN) *</label>
-                    <input type="text" value={formData.title_en} onChange={e => setFormData({...formData, title_en: e.target.value})} className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" required />
+                    <input type="text" value={formData.title_en} onChange={e => setFormData({...formData, title_en: e.target.value})} className="w-full border border-slate-300 p-3 rounded-lg text-xs outline-none focus:border-digitBlue" required />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Excerpt (EN)</label>
-                    <textarea value={formData.excerpt_en} onChange={e => setFormData({...formData, excerpt_en: e.target.value})} className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" rows={2} />
+                    <textarea value={formData.excerpt_en} onChange={e => setFormData({...formData, excerpt_en: e.target.value})} className="w-full border border-slate-300 p-3 rounded-lg text-xs outline-none focus:border-digitBlue" rows={2} />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Full Content (EN) *</label>
-                    <textarea value={formData.content_en} onChange={e => setFormData({...formData, content_en: e.target.value})} className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" rows={5} required />
+                    <textarea value={formData.content_en} onChange={e => setFormData({...formData, content_en: e.target.value})} className="w-full border border-slate-300 p-3 rounded-lg text-xs outline-none focus:border-digitBlue" rows={5} required />
                   </div>
                 </div>
               )}
@@ -289,19 +289,19 @@ export default function ArticlesManager() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">Slug URL *</label>
-                  <input type="text" value={formData.slug} onChange={e => setFormData({...formData, slug: e.target.value})} className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" required placeholder="nom-de-l-article" />
+                  <input type="text" value={formData.slug} onChange={e => setFormData({...formData, slug: e.target.value})} className="w-full border border-slate-300 p-3 rounded-lg text-xs outline-none focus:border-digitBlue" required placeholder="nom-de-l-article" />
                 </div>
 
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">Catégorie *</label>
-                  <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue bg-white">
+                  <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full border border-slate-300 p-3 rounded-lg text-xs outline-none focus:border-digitBlue bg-white">
                     {CATEGORIES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
                   </select>
                 </div>
 
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">Statut *</label>
-                  <select value={formData.is_published} onChange={e => setFormData({...formData, is_published: parseInt(e.target.value)})} className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue bg-white">
+                  <select value={formData.is_published} onChange={e => setFormData({...formData, is_published: parseInt(e.target.value)})} className="w-full border border-slate-300 p-3 rounded-lg text-xs outline-none focus:border-digitBlue bg-white">
                     <option value={1}>Publié</option>
                     <option value={0}>Brouillon</option>
                   </select>
@@ -312,7 +312,7 @@ export default function ArticlesManager() {
                   <label className="block text-xs font-semibold text-slate-700">Image de Couverture</label>
                   
                   <div className="flex flex-col md:flex-row gap-3 items-start md:items-center">
-                    <label className="flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-2 rounded-sm text-xs font-semibold cursor-pointer border border-slate-300 transition-colors">
+                    <label className="flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-2 rounded-lg text-xs font-semibold cursor-pointer border border-slate-300 transition-colors">
                       <Upload size={14} /> Importer un fichier
                       <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
                     </label>
@@ -327,11 +327,11 @@ export default function ArticlesManager() {
                       setFormData({...formData, cover_image: e.target.value});
                       setImagePreview(e.target.value);
                     }} 
-                    className="w-full border border-slate-300 p-3 rounded-sm text-xs outline-none focus:border-digitBlue" 
+                    className="w-full border border-slate-300 p-3 rounded-lg text-xs outline-none focus:border-digitBlue" 
                   />
 
                   {imagePreview && (
-                    <div className="mt-2 relative w-32 h-20 rounded-sm overflow-hidden border border-slate-200">
+                    <div className="mt-2 relative w-32 h-20 rounded-lg overflow-hidden border border-slate-200">
                       <img src={imagePreview} alt="Aperçu" className="w-full h-full object-cover" />
                     </div>
                   )}
@@ -339,8 +339,8 @@ export default function ArticlesManager() {
               </div>
 
               <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
-                <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2.5 border border-slate-300 rounded-sm text-xs font-semibold text-slate-700 hover:bg-slate-50 cursor-pointer">Annuler</button>
-                <button type="submit" className="px-5 py-2.5 bg-digitBlue hover:bg-digitBlue/90 text-white rounded-sm text-xs font-bold cursor-pointer transition-all shadow-xs">Enregistrer l'Article</button>
+                <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2.5 border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-50 cursor-pointer">Annuler</button>
+                <button type="submit" className="px-5 py-2.5 bg-digitBlue hover:bg-digitBlue/90 text-white rounded-lg text-xs font-bold cursor-pointer transition-all shadow-xs">Enregistrer l'Article</button>
               </div>
             </form>
           </div>

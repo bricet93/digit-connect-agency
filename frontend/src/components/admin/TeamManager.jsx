@@ -116,7 +116,7 @@ export default function TeamManager() {
   };
 
   return (
-    <div className="bg-white rounded-sm border border-slate-200 p-8 text-left">
+    <div className="bg-white rounded-lg border border-slate-200 p-8 text-left">
       <div className="flex justify-between items-center mb-6">
         <div>
           <h2 className="text-xl font-extrabold text-slate-900">Gestion de l'Équipe</h2>
@@ -124,7 +124,7 @@ export default function TeamManager() {
         </div>
         <button 
           onClick={() => handleOpenModal()} 
-          className="flex items-center gap-2 bg-digitBlue hover:bg-digitPink text-white font-bold text-xs px-4 py-2.5 rounded-sm transition-colors cursor-pointer"
+          className="flex items-center gap-2 bg-digitBlue hover:bg-digitPink text-white font-bold text-xs px-4 py-2.5 rounded-lg transition-colors cursor-pointer"
         >
           <Plus size={16} /> Ajouter un Membre
         </button>
@@ -132,11 +132,11 @@ export default function TeamManager() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {members.map(item => (
-          <div key={item.id} className="border border-slate-200 rounded-sm p-4 flex gap-4 items-center bg-slate-50/50 hover:bg-white hover:shadow-md transition-all">
+          <div key={item.id} className="border border-slate-200 rounded-lg p-4 flex gap-4 items-center bg-slate-50/50 hover:bg-white hover:shadow-md transition-all">
             <img 
               src={item.photo_url || 'https://via.placeholder.com/150'} 
               alt={item.full_name} 
-              className="w-16 h-16 rounded-sm object-cover border border-slate-200" 
+              className="w-16 h-16 rounded-lg object-cover border border-slate-200" 
             />
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
@@ -149,10 +149,10 @@ export default function TeamManager() {
               <p className="text-[11px] text-slate-400 truncate">{item.email || 'Pas d\'email'}</p>
             </div>
             <div className="flex flex-col gap-1">
-              <button onClick={() => handleOpenModal(item)} className="p-2 text-slate-600 bg-white border border-slate-200 hover:text-digitBlue rounded-sm transition-colors cursor-pointer">
+              <button onClick={() => handleOpenModal(item)} className="p-2 text-slate-600 bg-white border border-slate-200 hover:text-digitBlue rounded-lg transition-colors cursor-pointer">
                 <Edit2 size={14} />
               </button>
-              <button onClick={() => handleDeleteClick(item)} className="p-2 text-rose-600 bg-rose-50 border border-rose-100 hover:bg-rose-100 rounded-sm transition-colors cursor-pointer">
+              <button onClick={() => handleDeleteClick(item)} className="p-2 text-rose-600 bg-rose-50 border border-rose-100 hover:bg-rose-100 rounded-lg transition-colors cursor-pointer">
                 <Trash2 size={14} />
               </button>
             </div>
@@ -167,7 +167,7 @@ export default function TeamManager() {
               <h3 className="text-lg font-black text-slate-900">
                 {editingId ? 'Modifier le membre d\'équipe' : 'Ajouter un nouveau membre'}
               </h3>
-              <button onClick={() => setShowModal(false)} className="p-2 text-slate-400 hover:text-slate-600 rounded-sm">
+              <button onClick={() => setShowModal(false)} className="p-2 text-slate-400 hover:text-slate-600 rounded-lg">
                 <X size={18} />
               </button>
             </div>
@@ -183,7 +183,7 @@ export default function TeamManager() {
                     placeholder="ex: Carine NGUEMO" 
                     value={formData.full_name} 
                     onChange={e => setFormData({ ...formData, full_name: e.target.value })} 
-                    className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-sm focus:bg-white focus:border-digitBlue outline-none" 
+                    className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:border-digitBlue outline-none" 
                   />
                 </div>
               </div>
@@ -199,7 +199,7 @@ export default function TeamManager() {
                       placeholder="ex: Directrice de Stratégie" 
                       value={formData.role_fr} 
                       onChange={e => setFormData({ ...formData, role_fr: e.target.value })} 
-                      className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-sm focus:bg-white focus:border-digitBlue outline-none" 
+                      className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:border-digitBlue outline-none" 
                     />
                   </div>
                 </div>
@@ -213,7 +213,7 @@ export default function TeamManager() {
                       placeholder="ex: Head of Digital Strategy" 
                       value={formData.role_en} 
                       onChange={e => setFormData({ ...formData, role_en: e.target.value })} 
-                      className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-sm focus:bg-white focus:border-digitBlue outline-none" 
+                      className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:border-digitBlue outline-none" 
                     />
                   </div>
                 </div>
@@ -229,7 +229,7 @@ export default function TeamManager() {
                       placeholder="ex: carine@digit-connect.agency" 
                       value={formData.email} 
                       onChange={e => setFormData({ ...formData, email: e.target.value })} 
-                      className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-sm focus:bg-white focus:border-digitBlue outline-none" 
+                      className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:border-digitBlue outline-none" 
                     />
                   </div>
                 </div>
@@ -242,27 +242,27 @@ export default function TeamManager() {
                       placeholder="ex: +237 600 00 00 00" 
                       value={formData.phone} 
                       onChange={e => setFormData({ ...formData, phone: e.target.value })} 
-                      className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-sm focus:bg-white focus:border-digitBlue outline-none" 
+                      className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:border-digitBlue outline-none" 
                     />
                   </div>
                 </div>
               </div>
 
-              <div className="border border-slate-200 p-4 rounded-sm bg-slate-50/70 space-y-3">
+              <div className="border border-slate-200 p-4 rounded-lg bg-slate-50/70 space-y-3">
                 <label className="block font-bold text-slate-700">Photo de profil</label>
                 
                 <div className="flex gap-4">
                   <button 
                     type="button" 
                     onClick={() => setUploadMode('url')} 
-                    className={`flex items-center gap-1.5 font-bold px-3 py-1.5 rounded-sm transition-colors ${uploadMode === 'url' ? 'bg-digitBlue text-white' : 'bg-white text-slate-600 border border-slate-200'}`}
+                    className={`flex items-center gap-1.5 font-bold px-3 py-1.5 rounded-lg transition-colors ${uploadMode === 'url' ? 'bg-digitBlue text-white' : 'bg-white text-slate-600 border border-slate-200'}`}
                   >
                     <LinkIcon size={14}/> URL distante
                   </button>
                   <button 
                     type="button" 
                     onClick={() => setUploadMode('file')} 
-                    className={`flex items-center gap-1.5 font-bold px-3 py-1.5 rounded-sm transition-colors ${uploadMode === 'file' ? 'bg-digitBlue text-white' : 'bg-white text-slate-600 border border-slate-200'}`}
+                    className={`flex items-center gap-1.5 font-bold px-3 py-1.5 rounded-lg transition-colors ${uploadMode === 'file' ? 'bg-digitBlue text-white' : 'bg-white text-slate-600 border border-slate-200'}`}
                   >
                     <Upload size={14}/> Fichier Local
                   </button>
@@ -274,20 +274,20 @@ export default function TeamManager() {
                     placeholder="https://images.unsplash.com/photo-..." 
                     value={formData.photo_url} 
                     onChange={e => setFormData({ ...formData, photo_url: e.target.value })} 
-                    className="w-full p-2.5 border border-slate-200 rounded-sm bg-white focus:border-digitBlue outline-none" 
+                    className="w-full p-2.5 border border-slate-200 rounded-lg bg-white focus:border-digitBlue outline-none" 
                   />
                 ) : (
                   <input 
                     type="file" 
                     accept="image/*" 
                     onChange={handleFileUpload} 
-                    className="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-sm file:border-0 file:bg-digitBlue file:text-white file:font-bold cursor-pointer" 
+                    className="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-digitBlue file:text-white file:font-bold cursor-pointer" 
                   />
                 )}
 
                 {formData.photo_url && (
                   <div className="flex items-center gap-3 pt-2">
-                    <img src={formData.photo_url} alt="Aperçu" className="w-12 h-12 rounded-sm object-cover border" />
+                    <img src={formData.photo_url} alt="Aperçu" className="w-12 h-12 rounded-lg object-cover border" />
                     <span className="text-[11px] text-slate-500">Aperçu de la photo chargée</span>
                   </div>
                 )}
@@ -302,7 +302,7 @@ export default function TeamManager() {
                     placeholder="https://linkedin.com/in/username" 
                     value={formData.social_link} 
                     onChange={e => setFormData({ ...formData, social_link: e.target.value })} 
-                    className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-sm focus:bg-white focus:border-digitBlue outline-none" 
+                    className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:border-digitBlue outline-none" 
                   />
                 </div>
               </div>
@@ -316,7 +316,7 @@ export default function TeamManager() {
                       type="number" 
                       value={formData.display_order} 
                       onChange={e => setFormData({ ...formData, display_order: parseInt(e.target.value) || 0 })} 
-                      className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-sm focus:bg-white focus:border-digitBlue outline-none" 
+                      className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:border-digitBlue outline-none" 
                     />
                   </div>
                 </div>
@@ -326,7 +326,7 @@ export default function TeamManager() {
                   <button
                     type="button"
                     onClick={() => setFormData({ ...formData, is_active: formData.is_active === 1 ? 0 : 1 })}
-                    className={`w-full py-2.5 px-4 rounded-sm font-bold flex items-center justify-center gap-2 border transition-all cursor-pointer ${
+                    className={`w-full py-2.5 px-4 rounded-lg font-bold flex items-center justify-center gap-2 border transition-all cursor-pointer ${
                       formData.is_active === 1 
                         ? 'bg-emerald-50 text-emerald-700 border-emerald-200' 
                         : 'bg-slate-100 text-slate-600 border-slate-200'
@@ -342,13 +342,13 @@ export default function TeamManager() {
                 <button 
                   type="button" 
                   onClick={() => setShowModal(false)} 
-                  className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-sm transition-colors cursor-pointer"
+                  className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-lg transition-colors cursor-pointer"
                 >
                   Annuler
                 </button>
                 <button 
                   type="submit" 
-                  className="px-6 py-2.5 bg-digitBlue hover:bg-digitPink text-white font-bold rounded-sm transition-colors shadow-md cursor-pointer"
+                  className="px-6 py-2.5 bg-digitBlue hover:bg-digitPink text-white font-bold rounded-lg transition-colors shadow-md cursor-pointer"
                 >
                   {editingId ? 'Mettre à jour' : 'Enregistrer'}
                 </button>

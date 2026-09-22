@@ -61,24 +61,24 @@ export default function BlogSection() {
             {[1, 2, 3].map((n) => (
               <div 
                 key={n} 
-                className="bg-white rounded-sm border border-slate-200 shadow-xs p-6 animate-pulse flex flex-col justify-between h-96"
+                className="bg-white rounded-lg border border-slate-200 shadow-xs p-6 animate-pulse flex flex-col justify-between h-96"
               >
                 <div>
-                  <div className="w-full h-48 bg-slate-200 rounded-sm mb-4" />
+                  <div className="w-full h-48 bg-slate-200 rounded-lg mb-4" />
                   <div className="flex justify-between items-center mb-3">
                     <div className="w-20 h-5 bg-slate-200 rounded-full" />
-                    <div className="w-24 h-4 bg-slate-200 rounded-sm" />
+                    <div className="w-24 h-4 bg-slate-200 rounded-lg" />
                   </div>
-                  <div className="w-3/4 h-6 bg-slate-200 rounded-sm mb-2" />
-                  <div className="w-full h-4 bg-slate-100 rounded-sm mb-1" />
-                  <div className="w-2/3 h-4 bg-slate-100 rounded-sm" />
+                  <div className="w-3/4 h-6 bg-slate-200 rounded-lg mb-2" />
+                  <div className="w-full h-4 bg-slate-100 rounded-lg mb-1" />
+                  <div className="w-2/3 h-4 bg-slate-100 rounded-lg" />
                 </div>
-                <div className="w-28 h-5 bg-slate-200 rounded-sm mt-4" />
+                <div className="w-28 h-5 bg-slate-200 rounded-lg mt-4" />
               </div>
             ))}
           </div>
         ) : articles.length === 0 ? (
-          <div className="p-8 text-center bg-slate-50 border border-slate-200/80 rounded-sm">
+          <div className="p-8 text-center bg-slate-50 border border-slate-200/80 rounded-lg">
             <p className="text-xs font-semibold text-slate-500 italic">
               {t('blog_empty', 'Aucun article publié pour le moment.')}
             </p>
@@ -92,7 +92,7 @@ export default function BlogSection() {
               return (
                 <article 
                   key={article.id} 
-                  className="bg-white rounded-sm overflow-hidden border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-digitBlue/30 transition-all duration-500 flex flex-col justify-between group"
+                  className="bg-white rounded-lg overflow-hidden border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-digitBlue/30 transition-all duration-500 flex flex-col justify-between group"
                 >
                   <div>
                     {article.cover_image && (
