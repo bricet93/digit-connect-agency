@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "homepage": "https://bricet93.github.io/digit-connect-agency/",
+  "homepage": "https://bricet93.github.io/digit-connect-agency/frontend/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
