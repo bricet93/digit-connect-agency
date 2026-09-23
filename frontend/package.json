@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "homepage": "https://bricet93.github.io/digit-connect-agency/frontend/",
+  "homepage": "https://bricet93.github.io/digit-connect-agency/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist -r https://github.com/bricet93/digit-connect-agency.git"
+    "deploy": "gh-pages -d dist --add"
   },
   "dependencies": {
     "axios": "^1.20.0",
