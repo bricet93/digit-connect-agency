@@ -31,7 +31,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-50 pt-20 pb-16">
+    <section id="home" className="relative min-h-[95vh] flex items-center justify-center overflow-hidden">
       
       {/* Arrière-plan animé avec orbes colorées */}
       <AnimatedBackground />
@@ -50,7 +50,7 @@ export default function Hero() {
       </AnimatePresence>
 
       {/* Masque dégradé blanc pour garantir une visibilité optimale */}
-      <div className="absolute inset-0 bg-linear-to-b from-white/20 to-slate-50 pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-b from-white to-slate-100/5 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
         <motion.div 
