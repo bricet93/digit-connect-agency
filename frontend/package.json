@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist -r https://github.com/bricet93/digit-connect-agency.git"
   },
   "dependencies": {
     "axios": "^1.20.0",
