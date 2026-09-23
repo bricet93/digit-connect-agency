@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  /* Configuration de la police sans-serif principale */
+  --font-sans: 'Comfortaa', system-ui, -apple-system, sans-serif;
+
+  /* Couleurs personnalisées */
+  --color-digitBlue: #00269A;
+  --color-digitCyan: #00C1DE;
+  --color-digitPink: #E50695;
+  --color-digitDark: #0F172A;
+  --color-digitGray: #F8FAFC;
+}
+
+/* Smooth scroll natif */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  background-color: var(--color-digitGray);
+  color: #1E293B;
+  font-family: var(--font-sans);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
